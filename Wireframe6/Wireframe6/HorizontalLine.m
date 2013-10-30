@@ -22,4 +22,11 @@
     self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y-(thickness/2.0), self.endPoint.x, thickness);
 }
 
+-(void) resetHandles {
+    SelectionHandle *handle1 = [[SelectionHandle alloc] initWithPoint:self.startPoint AllowXChange:YES AllowYChange:NO];
+    SelectionHandle *handle2 = [[SelectionHandle alloc] initWithPoint:self.endPoint
+                                                         AllowXChange:YES AllowYChange:NO];
+    self.handles = [NSMutableArray arrayWithObjects:handle1, handle2, nil];
+}
+
 @end

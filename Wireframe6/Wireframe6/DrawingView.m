@@ -100,16 +100,17 @@
 }
 
 -(void) mouseDragged:(NSEvent *)theEvent {
+    NSPoint point = [self convertPoint: [theEvent locationInWindow] fromView: nil];
     if(self.selectedShape) {
         self.draggingSelectedShape = YES;
-        NSLog(@"Dragging");
+        [self.selectedShape handleMouseDraggedFromPoint:self.selectedPoint ToEndPoint:point];
     }
 }
 
 -(void) setSelectedShapeFromPoint: (NSPoint) point {
     [self unsetPreviousSelectedShape];
     for (Shape *shape in self.shapes) {
-        if(NSPointInRect(point, shape.trackingRect)) {
+        if([shape pointInShape:point]) {
             [self setSelectedShape:shape];
             [self setSelectedPoint:point];
             shape.selected = YES;

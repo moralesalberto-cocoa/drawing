@@ -10,10 +10,12 @@
 
 @implementation SelectionHandle
 
--(id) initWithPoint:(CGPoint) thePoint {
+-(id) initWithPoint:(CGPoint) thePoint AllowXChange:(BOOL) allowX AllowYChange: (BOOL) allowY {
     
     self = [super init];
     self.point = thePoint;
+    self.allowXChange = allowX;
+    self.allowYChange = allowY;
     [self setupRect];
     return self;
     

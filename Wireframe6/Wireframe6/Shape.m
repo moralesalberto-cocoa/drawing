@@ -38,6 +38,38 @@
     }
 }
 
+-(void) handleMouseDraggedFromPoint:(CGPoint) startP ToEndPoint:(CGPoint) endP {
+    SelectionHandle *startedFromHandle = [self findSelectionHandleInPoint:startP];
+    if (startedFromHandle) {
+        // change dimensions
+        [self changeDimensionsDraggedFrom:startP ToPoint:endP InHandle:startedFromHandle];
+    }
+    else {
+        // move position
+    }
+}
+
+-(SelectionHandle *) findSelectionHandleInPoint:(CGPoint) point {
+    SelectionHandle *foundHandle;
+    for (SelectionHandle *handle in self.handles) {
+        if(NSPointInRect(point, handle.rect)) {
+            foundHandle = handle;
+        }
+    }
+    return foundHandle;
+}
+
+// count the shape rect and the selectionHandle rects
+-(BOOL) pointInShape:(CGPoint) point{
+    BOOL foundPoint = (NSPointInRect(point, self.trackingRect) || [self findSelectionHandleInPoint:point]);
+    return foundPoint;
+}
+
+
+-(void) changeDimensionsDraggedFrom:(CGPoint) startP ToPoint: (CGPoint) endP InHandle:(SelectionHandle *) handle {
+    NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
+}
+
 -(void) resetTrackingRect {
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
 }
@@ -64,6 +96,7 @@
 -(void) resetHandles {
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
 }
+
 
 
 @end

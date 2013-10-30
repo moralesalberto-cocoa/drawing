@@ -41,4 +41,11 @@
 
 -(void) resetTrackingRect;
 
+-(void) handleMouseDraggedFromPoint:(CGPoint) startP ToEndPoint:(CGPoint) endP;
+
+-(void) changeDimensionsDraggedFrom:(CGPoint) startP ToPoint: (CGPoint) endP InHandle:(SelectionHandle *) handle;
+
+-(BOOL) pointInShape:(CGPoint) point;
+
+
 @end

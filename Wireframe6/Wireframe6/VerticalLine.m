@@ -23,4 +23,15 @@
 }
 
 
+-(void) changeDimensionsDraggedFrom:(CGPoint) startP ToPoint: (CGPoint) endP InHandle:(SelectionHandle *) handle {
+    NSLog(@"changing dimensions");
+}
+
+-(void) resetHandles {
+    SelectionHandle *handle1 = [[SelectionHandle alloc] initWithPoint:self.startPoint AllowXChange:NO AllowYChange:YES];
+    SelectionHandle *handle2 = [[SelectionHandle alloc] initWithPoint:self.endPoint
+                                AllowXChange:NO AllowYChange:YES];
+    self.handles = [NSMutableArray arrayWithObjects:handle1, handle2, nil];
+}
+
 @end

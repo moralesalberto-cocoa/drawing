@@ -24,11 +24,7 @@
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
 }
 
--(void) resetHandles {
-    SelectionHandle *handle1 = [[SelectionHandle alloc] initWithPoint:self.startPoint];
-    SelectionHandle *handle2 = [[SelectionHandle alloc] initWithPoint:self.endPoint];
-    self.handles = [NSMutableArray arrayWithObjects:handle1, handle2, nil];
-}
+
 
 //////////
 

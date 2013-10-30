@@ -14,7 +14,10 @@
 @property CGPoint point;
 @property CGRect rect;
 
--(id) initWithPoint:(CGPoint) thePoint;
+@property BOOL allowXChange;
+@property BOOL allowYChange;
+
+-(id) initWithPoint:(CGPoint) thePoint AllowXChange:(BOOL) allowX AllowYChange: (BOOL) allowY;
 
 -(void) draw;
 
