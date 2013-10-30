@@ -63,9 +63,9 @@
 
 - (IBAction)lineButtonPressed:(id)sender {
     
-    [self.drawing newLine];
-
-    [self.gridView setNeedsDisplay:YES];
+    Shape *shape = [self.drawing newLine];
+    
+    [self.gridView newShapeAdded:shape];
     
 }
 @end

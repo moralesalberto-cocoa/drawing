@@ -18,4 +18,8 @@
 
 -(void) draw;
 
+-(int) handleMouseDown:(CGPoint) point;
+
+-(int) handleMouseMoved:(CGPoint) point;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 @interface Shape : NSObject
 
@@ -17,9 +18,12 @@
 @property CGRect trackingRect;
 
 
++(NSColor *) highlightColor;
+
 -(void) draw;
 
+-(int) handleMouseDown:(CGPoint) point;
 
-
+-(int) handleMouseMoved:(CGPoint) point;
 
 @end

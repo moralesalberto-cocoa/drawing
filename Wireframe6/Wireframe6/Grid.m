@@ -11,11 +11,10 @@
 @implementation Grid
 
 -(id) initWithFrame:(CGRect)frame {
-    
     self = [super init];
     self.frame = frame;
-    self.startPoint = frame.origin;
-    self.endPoint = CGPointMake(frame.origin.x+frame.size.width, frame.origin.y+frame.size.height);
+    self.startPoint = CGPointMake(frame.origin.x, frame.origin.y+0.5);
+    self.endPoint = CGPointMake(frame.origin.x+frame.size.width, frame.origin.y+frame.size.height+0.5);
     self.bezierPath = [NSBezierPath bezierPath];
     self.increment = 35;
     return self;
@@ -23,10 +22,16 @@
 
 
 -(void) drawGrid {
-    
+    [self drawBackground];
+    [self drawLightColoredGrid];
+}
+
+-(void) drawBackground {
     [[NSColor whiteColor] set];
     [NSBezierPath fillRect:self.frame];
-    
+}
+
+-(void) drawLightColoredGrid {
     [self setLineColor];
     [self drawVerticalLines];
     [self drawHorizontalLines];
@@ -34,12 +39,10 @@
 }
 
 -(void) setLineColor {
-    
-    double rFloat = 226/255.0f;
-    double gFloat = 232/255.0f;
-    double bFloat = 237/255.0f;
-    [[NSColor colorWithCalibratedRed:rFloat green:gFloat blue:bFloat alpha:0.8] set];
-    
+    double rFloat = 135/255.0f;
+    double gFloat = 206/255.0f;
+    double bFloat = 250/255.0f;
+    [[NSColor colorWithCalibratedRed:rFloat green:gFloat blue:bFloat alpha:1.0] set];
 }
 
 -(void) drawVerticalLines {
@@ -48,7 +51,6 @@
     while (from < to) {
         [self.bezierPath moveToPoint:CGPointMake(from, self.startPoint.y)];
         [self.bezierPath lineToPoint:CGPointMake(from, self.endPoint.y)];
-        
         from += self.increment;
     }
     
@@ -60,7 +62,6 @@
     while (from < to) {
         [self.bezierPath moveToPoint:CGPointMake(self.startPoint.x, from)];
         [self.bezierPath lineToPoint:CGPointMake(self.endPoint.x, from)];
-        
         from += self.increment;
     }
 }

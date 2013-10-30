@@ -14,4 +14,7 @@
 
 @property Drawing *drawing;
 
+
+-(void) newShapeAdded:(Shape *) shape;
+
 @end

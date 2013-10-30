@@ -29,4 +29,22 @@
     }
 }
 
+-(int) handleMouseDown:(CGPoint) point {
+    int redraw = 0;
+    
+    for (Shape *shape in self.elements) {
+        redraw += [shape handleMouseDown: point];
+    }
+    return redraw;
+}
+
+-(int) handleMouseMoved:(CGPoint) point {
+    int redraw = 0;
+    
+    for (Shape *shape in self.elements) {
+        redraw += [shape handleMouseMoved: point];
+    }
+    return redraw;
+}
+
 @end
