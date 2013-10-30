@@ -31,10 +31,6 @@
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     
-    self.drawing = [[Drawing alloc] init];
-    
-    [self.gridView setDrawing:self.drawing];
-    
 }
 
 + (BOOL)autosavesInPlace
@@ -62,10 +58,6 @@
 }
 
 - (IBAction)lineButtonPressed:(id)sender {
-    
-    Shape *shape = [self.drawing newLine];
-    
-    [self.gridView newShapeAdded:shape];
-    
+    [self.drawingView newLine];
 }
 @end

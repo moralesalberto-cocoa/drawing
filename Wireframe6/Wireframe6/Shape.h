@@ -22,8 +22,7 @@
 
 -(void) draw;
 
--(int) handleMouseDown:(CGPoint) point;
+-(void) draggedFromPoint:(NSPoint) from ToPoint:(NSPoint) to;
 
--(int) handleMouseMoved:(CGPoint) point;
 
 @end

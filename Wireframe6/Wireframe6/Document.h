@@ -7,14 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Drawing.h"
+
 #import "GridView.h"
+#import "DrawingView.h"
 
 @interface Document : NSDocument
 
-@property Drawing *drawing;
-
 @property (strong) IBOutlet GridView *gridView;
+@property (strong) IBOutlet DrawingView *drawingView;
+
 
 - (IBAction)lineButtonPressed:(id)sender;
 

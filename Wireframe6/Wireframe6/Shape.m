@@ -26,22 +26,10 @@
     // the rest of the method is implemented in the child class
 }
 
--(int) handleMouseDown:(CGPoint) point {
-    int redraw = 0;
-    if(NSPointInRect(point, self.trackingRect)) {
-        self.color = [Shape highlightColor];
-        redraw ++; // increment count to force the view to redraw
-    }
-    return redraw;
-}
-
--(int) handleMouseMoved:(CGPoint) point {
-    int redraw = 0;
-    if(NSPointInRect(point, self.trackingRect)) {
-        self.color = [Shape highlightColor];
-        redraw ++; // increment count to force the view to redraw
-    }
-    return redraw;
+-(void) draggedFromPoint:(NSPoint) from ToPoint:(NSPoint) to {
+    // to be implemented by the child class
+    
+    NSLog(@"NOT SUPPOSED TO BE HERE");
 }
 
 @end

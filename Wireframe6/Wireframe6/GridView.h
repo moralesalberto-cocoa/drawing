@@ -8,13 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Grid.h"
-#import "Drawing.h"
 
 @interface GridView : NSView
-
-@property Drawing *drawing;
-
-
--(void) newShapeAdded:(Shape *) shape;
 
 @end

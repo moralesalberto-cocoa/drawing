@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66EFDA41820D2AD0066801E /* DrawingView.m */; };
 		B6F4F3551820542F0091723E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F4F3541820542F0091723E /* Cocoa.framework */; };
 		B6F4F35F1820542F0091723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6F4F35D1820542F0091723E /* InfoPlist.strings */; };
 		B6F4F3611820542F0091723E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F3601820542F0091723E /* main.m */; };
@@ -21,7 +22,6 @@
 		B6F4F3821820542F0091723E /* Wireframe6Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F3811820542F0091723E /* Wireframe6Tests.m */; };
 		B6F4F38D1820556F0091723E /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F38C1820556F0091723E /* GridView.m */; };
 		B6F4F390182057F30091723E /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F38F182057F30091723E /* Grid.m */; };
-		B6F4F39318205DF80091723E /* Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F39218205DF80091723E /* Drawing.m */; };
 		B6F4F39618205F500091723E /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F39518205F500091723E /* Line.m */; };
 		B6F4F3991820651B0091723E /* Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F3981820651B0091723E /* Shape.m */; };
 /* End PBXBuildFile section */
@@ -37,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B66EFDA31820D2AD0066801E /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
+		B66EFDA41820D2AD0066801E /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 		B6F4F3511820542F0091723E /* Wireframe6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wireframe6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F4F3541820542F0091723E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B6F4F3571820542F0091723E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -61,8 +63,6 @@
 		B6F4F38C1820556F0091723E /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
 		B6F4F38E182057F30091723E /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		B6F4F38F182057F30091723E /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
-		B6F4F39118205DF80091723E /* Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawing.h; sourceTree = "<group>"; };
-		B6F4F39218205DF80091723E /* Drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drawing.m; sourceTree = "<group>"; };
 		B6F4F39418205F500091723E /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
 		B6F4F39518205F500091723E /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
 		B6F4F3971820651B0091723E /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
@@ -135,8 +135,8 @@
 				B6F4F3661820542F0091723E /* Document.h */,
 				B6F4F3671820542F0091723E /* Document.m */,
 				B6F4F3691820542F0091723E /* Document.xib */,
-				B6F4F39118205DF80091723E /* Drawing.h */,
-				B6F4F39218205DF80091723E /* Drawing.m */,
+				B66EFDA31820D2AD0066801E /* DrawingView.h */,
+				B66EFDA41820D2AD0066801E /* DrawingView.m */,
 				B6F4F3971820651B0091723E /* Shape.h */,
 				B6F4F3981820651B0091723E /* Shape.m */,
 				B6F4F39418205F500091723E /* Line.h */,
@@ -283,11 +283,11 @@
 			files = (
 				B6F4F3681820542F0091723E /* Document.m in Sources */,
 				B6F4F39618205F500091723E /* Line.m in Sources */,
-				B6F4F39318205DF80091723E /* Drawing.m in Sources */,
 				B6F4F38D1820556F0091723E /* GridView.m in Sources */,
 				B6F4F3611820542F0091723E /* main.m in Sources */,
 				B6F4F390182057F30091723E /* Grid.m in Sources */,
 				B6F4F3991820651B0091723E /* Shape.m in Sources */,
+				B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +506,7 @@
 				B6F4F3871820542F0091723E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B6F4F3881820542F0091723E /* Build configuration list for PBXNativeTarget "Wireframe6Tests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +515,7 @@
 				B6F4F38A1820542F0091723E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

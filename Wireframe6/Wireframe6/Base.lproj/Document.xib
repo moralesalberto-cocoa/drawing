@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document">
             <connections>
+                <outlet property="drawingView" destination="D1S-tQ-W2v" id="dfh-fT-HKt"/>
                 <outlet property="gridView" destination="m0k-zA-tUP" id="mTm-XW-KyS"/>
                 <outlet property="lineButtonPressed" destination="ghM-Zd-cbh" id="cUB-bV-fCL"/>
                 <outlet property="window" destination="5" id="18"/>
@@ -26,9 +27,16 @@
                         <rect key="frame" x="49" y="0.0" width="563" height="676"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghM-Zd-cbh">
-                        <rect key="frame" x="2" y="624" width="42" height="32"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="D1S-tQ-W2v" customClass="DrawingView">
+                        <rect key="frame" x="49" y="0.0" width="568" height="676"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ghM-Zd-cbh">
+                        <rect key="frame" x="5" y="628" width="42" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="eiG-xg-ett"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6YM-gl-B50">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -39,10 +47,16 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="m0k-zA-tUP" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="49" id="8gl-8y-5h4"/>
-                    <constraint firstAttribute="bottom" secondItem="m0k-zA-tUP" secondAttribute="bottom" id="Vhm-cT-3SP"/>
-                    <constraint firstAttribute="trailing" secondItem="m0k-zA-tUP" secondAttribute="trailing" id="WQp-ew-XBb"/>
-                    <constraint firstItem="m0k-zA-tUP" firstAttribute="top" secondItem="6" secondAttribute="top" id="wvF-sF-X2G"/>
+                    <constraint firstItem="ghM-Zd-cbh" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="11" id="1lG-rm-j8u"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="top" secondItem="D1S-tQ-W2v" secondAttribute="top" id="8Rb-d3-Btm"/>
+                    <constraint firstItem="D1S-tQ-W2v" firstAttribute="leading" secondItem="ghM-Zd-cbh" secondAttribute="trailing" constant="8" symbolic="YES" id="EPb-5B-XsW"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="top" secondItem="6" secondAttribute="top" id="HHu-5a-1XO"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="bottom" secondItem="D1S-tQ-W2v" secondAttribute="bottom" id="Jz0-Qk-5Nv"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="leading" secondItem="ghM-Zd-cbh" secondAttribute="trailing" constant="8" symbolic="YES" id="Yq6-Jf-2Gm"/>
+                    <constraint firstAttribute="trailing" secondItem="D1S-tQ-W2v" secondAttribute="trailing" constant="-5" id="ZZA-FB-79s"/>
+                    <constraint firstAttribute="trailing" secondItem="m0k-zA-tUP" secondAttribute="trailing" id="fsu-y8-Z1h"/>
+                    <constraint firstItem="ghM-Zd-cbh" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="myE-Ji-6VU"/>
+                    <constraint firstAttribute="bottom" secondItem="m0k-zA-tUP" secondAttribute="bottom" id="wrU-8y-PM9"/>
                 </constraints>
             </view>
             <connections>
