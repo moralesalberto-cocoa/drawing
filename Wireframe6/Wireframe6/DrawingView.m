@@ -63,41 +63,34 @@
         [self removeTrackingArea:self.trackingAreas.firstObject];
     }
     for (Shape *shape in self.shapes) {
-        NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:shape.trackingRect options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow ) owner:self userInfo:nil];
-        [self addTrackingArea:trackingArea];
+        [self addTrackingAreaFor:shape];
     }
+}
+
+-(void) addTrackingAreaFor:(Shape *) shape {
+    NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:shape.trackingRect options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow ) owner:self userInfo:nil];
+    [self addTrackingArea:trackingArea];
 }
 
 
 -(void) mouseEntered:(NSEvent *)theEvent {
-    [[NSCursor openHandCursor] set];
 }
 
 -(void) mouseMoved:(NSEvent *)theEvent {
-    [[NSCursor openHandCursor] set];
+
 }
 
 -(void) mouseExited:(NSEvent *)theEvent {
-    [[NSCursor arrowCursor] set];
 }
 
 -(void) mouseDown:(NSEvent *)theEvent {
-    [[NSCursor closedHandCursor] set];
     NSPoint point = [self convertPoint: [theEvent locationInWindow] fromView: nil];
-    [self findSelectedShape:point];
+    [self setSelectedShapeFromPoint:point];
+    [self setNeedsDisplay:YES];
 }
 
 -(void) mouseUp:(NSEvent *)theEvent {
-    [[NSCursor arrowCursor] set];
-    if(self.selectedShape && self.draggingSelectedShape) {
-        
-        NSPoint point = [self convertPoint: [theEvent locationInWindow] fromView: nil];
-        [self.selectedShape draggedFromPoint:self.selectedPoint ToPoint:point];
-        [self setNeedsDisplay:YES];
-        
-        [self resetTrackingAreas];
-        [self stopMove];
-    }
+
 }
 
 
@@ -109,19 +102,26 @@
 -(void) mouseDragged:(NSEvent *)theEvent {
     if(self.selectedShape) {
         self.draggingSelectedShape = YES;
-        [[NSCursor closedHandCursor] set];
-
+        NSLog(@"Dragging");
     }
 }
 
--(void) findSelectedShape: (NSPoint) point {
-    [self setSelectedShape:nil];
+-(void) setSelectedShapeFromPoint: (NSPoint) point {
+    [self unsetPreviousSelectedShape];
     for (Shape *shape in self.shapes) {
         if(NSPointInRect(point, shape.trackingRect)) {
             [self setSelectedShape:shape];
             [self setSelectedPoint:point];
+            shape.selected = YES;
             break;
         }
+    }
+}
+
+-(void) unsetPreviousSelectedShape {
+    [self setSelectedShape:nil];
+    for (Shape *shape in self.shapes) {
+        shape.selected = NO;
     }
 }
 

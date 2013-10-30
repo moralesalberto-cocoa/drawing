@@ -16,7 +16,7 @@
 
 @property NSMutableArray * shapes;
 
-@property Shape * selectedShape;
+@property Shape *selectedShape;
 
 @property BOOL draggingSelectedShape;
 
@@ -32,5 +32,7 @@
 -(Rectangle *) newRectangle;
 
 -(void) resetTrackingAreas;
+
+-(void) setSelectedShapeFromPoint:(CGPoint) point;
 
 @end

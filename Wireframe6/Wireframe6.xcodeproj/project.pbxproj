@@ -12,6 +12,7 @@
 		B646813318217ECE0015111B /* VerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813218217ECE0015111B /* VerticalLine.m */; };
 		B646813618217EDA0015111B /* HorizontalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813518217EDA0015111B /* HorizontalLine.m */; };
 		B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66EFDA41820D2AD0066801E /* DrawingView.m */; };
+		B6EC12051821A0F600B6A456 /* SelectionHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EC12041821A0F600B6A456 /* SelectionHandle.m */; };
 		B6F4F3551820542F0091723E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F4F3541820542F0091723E /* Cocoa.framework */; };
 		B6F4F35F1820542F0091723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6F4F35D1820542F0091723E /* InfoPlist.strings */; };
 		B6F4F3611820542F0091723E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F3601820542F0091723E /* main.m */; };
@@ -51,6 +52,8 @@
 		B646813518217EDA0015111B /* HorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalLine.m; sourceTree = "<group>"; };
 		B66EFDA31820D2AD0066801E /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		B66EFDA41820D2AD0066801E /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
+		B6EC12031821A0F600B6A456 /* SelectionHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionHandle.h; sourceTree = "<group>"; };
+		B6EC12041821A0F600B6A456 /* SelectionHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionHandle.m; sourceTree = "<group>"; };
 		B6F4F3511820542F0091723E /* Wireframe6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wireframe6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F4F3541820542F0091723E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B6F4F3571820542F0091723E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -107,6 +110,8 @@
 			children = (
 				B6F4F3971820651B0091723E /* Shape.h */,
 				B6F4F3981820651B0091723E /* Shape.m */,
+				B6EC12031821A0F600B6A456 /* SelectionHandle.h */,
+				B6EC12041821A0F600B6A456 /* SelectionHandle.m */,
 				B6F4F39418205F500091723E /* Line.h */,
 				B6F4F39518205F500091723E /* Line.m */,
 				B646813118217ECE0015111B /* VerticalLine.h */,
@@ -325,6 +330,7 @@
 				B6F4F3611820542F0091723E /* main.m in Sources */,
 				B6F4F390182057F30091723E /* Grid.m in Sources */,
 				B646812B182176A90015111B /* Circle.m in Sources */,
+				B6EC12051821A0F600B6A456 /* SelectionHandle.m in Sources */,
 				B6F4F3991820651B0091723E /* Shape.m in Sources */,
 				B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */,
 				B646813318217ECE0015111B /* VerticalLine.m in Sources */,

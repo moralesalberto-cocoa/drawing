@@ -19,8 +19,7 @@
 
 -(void) resetTrackingRect {
     float thickness = 10.0;
-    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y, self.endPoint.x, thickness);
+    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y-(thickness/2.0), self.endPoint.x, thickness);
 }
-
 
 @end

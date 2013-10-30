@@ -21,10 +21,13 @@
 }
 
 -(void) resetTrackingRect {
-    // reset the tracking rect
-    // to be implemented by the child class, here we set a horizontal one
-    float thickness = 10.0;
-    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y, self.endPoint.x, thickness);
+    NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
+}
+
+-(void) resetHandles {
+    SelectionHandle *handle1 = [[SelectionHandle alloc] initWithPoint:self.startPoint];
+    SelectionHandle *handle2 = [[SelectionHandle alloc] initWithPoint:self.endPoint];
+    self.handles = [NSMutableArray arrayWithObjects:handle1, handle2, nil];
 }
 
 //////////
@@ -32,6 +35,11 @@
 
 
 
+// drawing
+-(void) draw {
+    [super draw]; // some general settings like color
+    [self.bezierPath stroke];
+}
 
 -(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
     
@@ -41,35 +49,13 @@
     
     [self resetTrackingRect];
     
+    [self resetHandles];
+    
     // reset the bezier path
     [self.bezierPath removeAllPoints];
     [self.bezierPath moveToPoint:self.startPoint];
     [self.bezierPath lineToPoint:self.endPoint];
 }
-
-
--(void) draw {
-
-    [super draw]; // some general settings like color
-    
-    [self.bezierPath stroke];
-}
-
-// useful when printing to console
--(NSString *) description {
-    return [NSString stringWithFormat:@"Line instance located at x1: %f, y1: %f, x2:%f, y2:%f", self.startPoint.x, self.startPoint.y, self.endPoint.x, self.endPoint.y];
-}
-
--(void) draggedFromPoint:(NSPoint) from ToPoint:(NSPoint) to {
-    double newStartX = self.startPoint.x + (to.x - from.x);
-    double newStartY = self.startPoint.y - (from.y - to.y);
-    double newEndX = self.endPoint.x + (to.x - from.x);
-    double newEndY = self.endPoint.y - (from.y - to.y);
-    
-    [self resetWithStartPoint:CGPointMake(newStartX, newStartY) andEndPoint:CGPointMake(newEndX, newEndY)];
-
-}
-
 
 // Encoding and reading
 -(id)initWithCoder:(NSCoder *)aDecoder {
@@ -82,10 +68,16 @@
 
 -(void) encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
-    
     [aCoder encodePoint:self.startPoint forKey:@"startPoint"];
     [aCoder encodePoint:self.endPoint forKey:@"endPoint"];
     
+}
+
+
+
+// custom description of line useful when printing to console
+-(NSString *) description {
+    return [NSString stringWithFormat:@"Line instance located at x1: %f, y1: %f, x2:%f, y2:%f", self.startPoint.x, self.startPoint.y, self.endPoint.x, self.endPoint.y];
 }
 
 

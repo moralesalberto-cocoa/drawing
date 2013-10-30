@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "SelectionHandle.h"
 
 @interface Shape : NSObject <NSCoding>
 
@@ -17,12 +18,27 @@
 
 @property CGRect trackingRect;
 
+@property BOOL selected;
+
+@property NSMutableArray *handles;
+
+
+// most shapes can use these
+@property CGPoint startPoint;
+
+@property CGPoint endPoint;
+
 
 +(NSColor *) highlightColor;
 
 -(void) draw;
 
--(void) draggedFromPoint:(NSPoint) from ToPoint:(NSPoint) to;
+-(void) drawHandles;
 
+-(void) resetHandles;
+
+-(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP;
+
+-(void) resetTrackingRect;
 
 @end

@@ -16,40 +16,44 @@
     return self;
 }
 
+
+-(void) resetHandles {
+    SelectionHandle *handle1 = [[SelectionHandle alloc] initWithPoint:self.startPoint];
+    SelectionHandle *handle8 = [[SelectionHandle alloc] initWithPoint:self.endPoint];
+    double midX = self.startPoint.x + ((self.endPoint.x - self.startPoint.x)/2);
+    double midY = self.startPoint.y + ((self.endPoint.y - self.startPoint.y)/2);
+    SelectionHandle *handle2 = [[SelectionHandle alloc] initWithPoint:CGPointMake(midX, self.startPoint.y)];
+    SelectionHandle *handle3 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.endPoint.x, self.startPoint.y)];
+    SelectionHandle *handle4 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.startPoint.x, midY)];
+    SelectionHandle *handle5 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.endPoint.x, midY)];
+    SelectionHandle *handle6 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.startPoint.x, self.endPoint.y)];
+    SelectionHandle *handle7 = [[SelectionHandle alloc] initWithPoint:CGPointMake(midX, self.endPoint.y)];
+    self.handles = [NSMutableArray arrayWithObjects:handle1, handle2, handle3, handle4, handle5, handle6, handle7, handle8, nil];
+}
+
+
+-(void) draw {
+    [super draw]; // some general settings like color
+    [self.bezierPath stroke];
+}
+
 -(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
     
-    // rectangle from these two points
-    self.startPoint = startP;
-    self.endPoint = endP;
+    // round and add 0.5 to make thin lines
+    self.startPoint = CGPointMake(lroundf(startP.x)+0.5, lroundf(startP.y)+0.5);
+    self.endPoint = CGPointMake(lroundf(endP.x)+0.5, lroundf(endP.y)+0.5);;
     
     // reset the tracking rect
-    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y, self.endPoint.x-self.startPoint.x,self.endPoint.y-self.startPoint.y);
+    [self resetTrackingRect];
+    
+    [self resetHandles];
     
     // reset the bezier path
     self.bezierPath = [NSBezierPath bezierPathWithOvalInRect:self.trackingRect];
 }
 
-
--(void) draw {
-    
-    [super draw]; // some general settings like color
-    
-    [self.bezierPath stroke];
-}
-
-// useful when printing to console
--(NSString *) description {
-    return [NSString stringWithFormat:@"Line instance located at x1: %f, y1: %f, x2:%f, y2:%f", self.startPoint.x, self.startPoint.y, self.endPoint.x, self.endPoint.y];
-}
-
--(void) draggedFromPoint:(NSPoint) from ToPoint:(NSPoint) to {
-    double newStartX = self.startPoint.x + (to.x - from.x);
-    double newStartY = self.startPoint.y - (from.y - to.y);
-    double newEndX = self.endPoint.x + (to.x - from.x);
-    double newEndY = self.endPoint.y - (from.y - to.y);
-    
-    [self resetWithStartPoint:CGPointMake(newStartX, newStartY) andEndPoint:CGPointMake(newEndX, newEndY)];
-    
+-(void) resetTrackingRect {
+    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y, self.endPoint.x-self.startPoint.x, self.endPoint.y-self.startPoint.y);
 }
 
 
@@ -64,9 +68,10 @@
 
 -(void) encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
-    
     [aCoder encodePoint:self.startPoint forKey:@"startPoint"];
     [aCoder encodePoint:self.endPoint forKey:@"endPoint"];
     
 }
+
+
 @end

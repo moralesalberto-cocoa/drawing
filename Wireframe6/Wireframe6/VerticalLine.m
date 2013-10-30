@@ -19,7 +19,7 @@
 
 -(void) resetTrackingRect {
     float width = 10.0;
-    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y, width, self.endPoint.y);
+    self.trackingRect = CGRectMake(self.startPoint.x-(width/2.0), self.startPoint.y, width, self.endPoint.y);
 }
 
 

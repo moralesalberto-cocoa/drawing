@@ -11,9 +11,7 @@
 
 @interface Line : Shape <NSCoding>
 
-@property CGPoint startPoint;
 
-@property CGPoint endPoint;
 
 
 -(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP;
