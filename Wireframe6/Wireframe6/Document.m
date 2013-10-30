@@ -15,6 +15,8 @@
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
+        
+        self.archivedShapes = [NSMutableArray arrayWithObjects: nil];
     }
     return self;
 }
@@ -31,6 +33,10 @@
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     
+    [self.drawingView.shapes addObjectsFromArray:self.archivedShapes];
+    [self.drawingView resetTrackingAreas];
+    [self.drawingView setNeedsDisplay:YES];
+    
 }
 
 + (BOOL)autosavesInPlace
@@ -40,20 +46,22 @@
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
-    return nil;
+    // Insert code here to write your document to data
+    if(outError) {
+        *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+    }
+    self.archivedShapes = [NSMutableArray arrayWithArray: self.drawingView.shapes];
+    return [NSKeyedArchiver archivedDataWithRootObject:self.archivedShapes];
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
+    // Insert code here to read your document from the given data of the specified type.
+    if(outError) {
+        *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+    }
+    
+    [self setArchivedShapes:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
     return YES;
 }
 

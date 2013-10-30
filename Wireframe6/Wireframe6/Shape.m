@@ -32,4 +32,19 @@
     NSLog(@"NOT SUPPOSED TO BE HERE");
 }
 
+// Encoding and reading
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    
+    self.bezierPath = [aDecoder decodeObjectForKey:@"bezierPath"];
+    self.color = [aDecoder decodeObjectForKey:@"color"];
+    
+    return self;
+}
+
+-(void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.bezierPath forKey:@"bezierPath"];
+    [aCoder encodeObject:self.color forKey:@"color"];
+}
+
 @end

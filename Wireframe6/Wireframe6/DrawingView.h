@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Line.h"
 
-@interface DrawingView : NSView
+@interface DrawingView : NSView <NSCoding>
 
 @property NSMutableArray * shapes;
 
@@ -21,5 +21,11 @@
 
 
 -(Line *) newLine;
+
+-(id) initWithCoder:(NSCoder *)aDecoder;
+
+-(void) encodeWithCoder:(NSCoder *)aCoder;
+
+-(void) resetTrackingAreas;
 
 @end

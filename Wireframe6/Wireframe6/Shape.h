@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-@interface Shape : NSObject
+@interface Shape : NSObject <NSCoding>
 
 @property NSBezierPath *bezierPath;
 

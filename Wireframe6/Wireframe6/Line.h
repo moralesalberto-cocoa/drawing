@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Shape.h"
 
-@interface Line : Shape
+@interface Line : Shape <NSCoding>
 
 @property CGPoint startPoint;
 

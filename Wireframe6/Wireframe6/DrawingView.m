@@ -109,4 +109,16 @@
 }
 
 
+
+// Encoding and reading
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    
+    return self;
+}
+
+-(void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.shapes forKey:@"shapes"];
+}
 @end
+

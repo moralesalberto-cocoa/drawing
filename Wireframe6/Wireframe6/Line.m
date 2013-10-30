@@ -18,8 +18,9 @@
 
 -(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
     
-    self.startPoint = startP;
-    self.endPoint = endP;
+    // round and add 0.5 to make thin lines
+    self.startPoint = CGPointMake(lroundf(startP.x), lroundf(startP.y)+0.5);
+    self.endPoint = CGPointMake(lroundf(endP.x), lroundf(endP.y)+0.5);;
     
     // reset the tracking rect
     float thickness = 10.0;
@@ -54,6 +55,23 @@
 
 }
 
+
+// Encoding and reading
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    NSPoint startP = [aDecoder decodePointForKey:@"startPoint"];
+    NSPoint endP = [aDecoder decodePointForKey:@"endPoint"];
+    [self resetWithStartPoint:startP andEndPoint:endP];
+    return self;
+}
+
+-(void) encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    
+    [aCoder encodePoint:self.startPoint forKey:@"startPoint"];
+    [aCoder encodePoint:self.endPoint forKey:@"endPoint"];
+    
+}
 
 
 @end

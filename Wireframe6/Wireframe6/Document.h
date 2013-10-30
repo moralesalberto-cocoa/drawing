@@ -10,12 +10,14 @@
 
 #import "GridView.h"
 #import "DrawingView.h"
+#import "Shape.h"
 
 @interface Document : NSDocument
 
 @property (strong) IBOutlet GridView *gridView;
 @property (strong) IBOutlet DrawingView *drawingView;
 
+@property (strong) NSMutableArray *archivedShapes;
 
 - (IBAction)lineButtonPressed:(id)sender;
 
