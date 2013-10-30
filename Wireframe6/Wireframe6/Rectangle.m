@@ -1,37 +1,19 @@
 //
-//  Line.m
+//  Rectangle.m
 //  Wireframe6
 //
-//  Created by Alberto Morales on 10/29/13.
+//  Created by Alberto Morales on 10/30/13.
 //  Copyright (c) 2013 Alberto Morales. All rights reserved.
 //
 
-#import "Line.h"
+#import "Rectangle.h"
 
-@implementation Line
-
-
-//////// To be implemented by child class
-
+@implementation Rectangle
 -(id) init {
     self = [super init];
-    // this line to be implemented by child class, here we set a horizontal line
-    [self resetWithStartPoint:CGPointMake(20.0, 50) andEndPoint:CGPointMake(100.0, 50)];
+    [self resetWithStartPoint:CGPointMake(100.0, 300.0) andEndPoint:CGPointMake(150.0, 350.0)];
     return self;
 }
-
--(void) resetTrackingRect {
-    // reset the tracking rect
-    // to be implemented by the child class, here we set a horizontal one
-    float thickness = 10.0;
-    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y, self.endPoint.x, thickness);
-}
-
-//////////
-
-
-
-
 
 -(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
     
@@ -39,17 +21,16 @@
     self.startPoint = CGPointMake(lroundf(startP.x)+0.5, lroundf(startP.y)+0.5);
     self.endPoint = CGPointMake(lroundf(endP.x)+0.5, lroundf(endP.y)+0.5);;
     
-    [self resetTrackingRect];
+    // reset the tracking rect
+    self.trackingRect = CGRectMake(self.startPoint.x, self.startPoint.y, self.endPoint.x-self.startPoint.x,self.endPoint.y-self.startPoint.y);
     
     // reset the bezier path
-    [self.bezierPath removeAllPoints];
-    [self.bezierPath moveToPoint:self.startPoint];
-    [self.bezierPath lineToPoint:self.endPoint];
+    self.bezierPath = [NSBezierPath bezierPathWithRect:self.trackingRect];
 }
 
 
 -(void) draw {
-
+    
     [super draw]; // some general settings like color
     
     [self.bezierPath stroke];
@@ -67,7 +48,7 @@
     double newEndY = self.endPoint.y - (from.y - to.y);
     
     [self resetWithStartPoint:CGPointMake(newStartX, newStartY) andEndPoint:CGPointMake(newEndX, newEndY)];
-
+    
 }
 
 
@@ -87,6 +68,4 @@
     [aCoder encodePoint:self.endPoint forKey:@"endPoint"];
     
 }
-
-
 @end

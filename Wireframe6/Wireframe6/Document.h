@@ -20,5 +20,8 @@
 @property (strong) NSMutableArray *archivedShapes;
 
 - (IBAction)lineButtonPressed:(id)sender;
+- (IBAction)circleButtonPressed:(id)sender;
+- (IBAction)rectButtonPressed:(id)sender;
+- (IBAction)verticalLineButtonPressed:(id)sender;
 
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B646812B182176A90015111B /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = B646812A182176A90015111B /* Circle.m */; };
+		B646812E182179870015111B /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = B646812D182179870015111B /* Rectangle.m */; };
+		B646813318217ECE0015111B /* VerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813218217ECE0015111B /* VerticalLine.m */; };
+		B646813618217EDA0015111B /* HorizontalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813518217EDA0015111B /* HorizontalLine.m */; };
 		B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66EFDA41820D2AD0066801E /* DrawingView.m */; };
 		B6F4F3551820542F0091723E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F4F3541820542F0091723E /* Cocoa.framework */; };
 		B6F4F35F1820542F0091723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6F4F35D1820542F0091723E /* InfoPlist.strings */; };
@@ -37,6 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B6468129182176A90015111B /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
+		B646812A182176A90015111B /* Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circle.m; sourceTree = "<group>"; };
+		B646812C182179870015111B /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		B646812D182179870015111B /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
+		B646813118217ECE0015111B /* VerticalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalLine.h; sourceTree = "<group>"; };
+		B646813218217ECE0015111B /* VerticalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalLine.m; sourceTree = "<group>"; };
+		B646813418217EDA0015111B /* HorizontalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalLine.h; sourceTree = "<group>"; };
+		B646813518217EDA0015111B /* HorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalLine.m; sourceTree = "<group>"; };
 		B66EFDA31820D2AD0066801E /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		B66EFDA41820D2AD0066801E /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 		B6F4F3511820542F0091723E /* Wireframe6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wireframe6.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +102,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B646812F18217C2E0015111B /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				B6F4F3971820651B0091723E /* Shape.h */,
+				B6F4F3981820651B0091723E /* Shape.m */,
+				B6F4F39418205F500091723E /* Line.h */,
+				B6F4F39518205F500091723E /* Line.m */,
+				B646813118217ECE0015111B /* VerticalLine.h */,
+				B646813218217ECE0015111B /* VerticalLine.m */,
+				B646813418217EDA0015111B /* HorizontalLine.h */,
+				B646813518217EDA0015111B /* HorizontalLine.m */,
+				B6468129182176A90015111B /* Circle.h */,
+				B646812A182176A90015111B /* Circle.m */,
+				B646812C182179870015111B /* Rectangle.h */,
+				B646812D182179870015111B /* Rectangle.m */,
+			);
+			name = Shapes;
+			sourceTree = "<group>";
+		};
+		B646813018217C7F0015111B /* BackgroundGrid */ = {
+			isa = PBXGroup;
+			children = (
+				B6F4F38E182057F30091723E /* Grid.h */,
+				B6F4F38F182057F30091723E /* Grid.m */,
+				B6F4F38B1820556F0091723E /* GridView.h */,
+				B6F4F38C1820556F0091723E /* GridView.m */,
+			);
+			name = BackgroundGrid;
+			sourceTree = "<group>";
+		};
 		B6F4F3481820542F0091723E = {
 			isa = PBXGroup;
 			children = (
@@ -132,19 +174,13 @@
 		B6F4F35A1820542F0091723E /* Wireframe6 */ = {
 			isa = PBXGroup;
 			children = (
+				B646813018217C7F0015111B /* BackgroundGrid */,
+				B646812F18217C2E0015111B /* Shapes */,
 				B6F4F3661820542F0091723E /* Document.h */,
 				B6F4F3671820542F0091723E /* Document.m */,
 				B6F4F3691820542F0091723E /* Document.xib */,
 				B66EFDA31820D2AD0066801E /* DrawingView.h */,
 				B66EFDA41820D2AD0066801E /* DrawingView.m */,
-				B6F4F3971820651B0091723E /* Shape.h */,
-				B6F4F3981820651B0091723E /* Shape.m */,
-				B6F4F39418205F500091723E /* Line.h */,
-				B6F4F39518205F500091723E /* Line.m */,
-				B6F4F38B1820556F0091723E /* GridView.h */,
-				B6F4F38C1820556F0091723E /* GridView.m */,
-				B6F4F38E182057F30091723E /* Grid.h */,
-				B6F4F38F182057F30091723E /* Grid.m */,
 				B6F4F36C1820542F0091723E /* MainMenu.xib */,
 				B6F4F36F1820542F0091723E /* Images.xcassets */,
 				B6F4F35B1820542F0091723E /* Supporting Files */,
@@ -283,11 +319,15 @@
 			files = (
 				B6F4F3681820542F0091723E /* Document.m in Sources */,
 				B6F4F39618205F500091723E /* Line.m in Sources */,
+				B646812E182179870015111B /* Rectangle.m in Sources */,
+				B646813618217EDA0015111B /* HorizontalLine.m in Sources */,
 				B6F4F38D1820556F0091723E /* GridView.m in Sources */,
 				B6F4F3611820542F0091723E /* main.m in Sources */,
 				B6F4F390182057F30091723E /* Grid.m in Sources */,
+				B646812B182176A90015111B /* Circle.m in Sources */,
 				B6F4F3991820651B0091723E /* Shape.m in Sources */,
 				B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */,
+				B646813318217ECE0015111B /* VerticalLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

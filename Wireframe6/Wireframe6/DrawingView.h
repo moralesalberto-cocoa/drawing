@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Line.h"
+#import "HorizontalLine.h"
+#import "VerticalLine.h"
+#import "Circle.h"
+#import "Rectangle.h"
 
-@interface DrawingView : NSView <NSCoding>
+@interface DrawingView : NSView
 
 @property NSMutableArray * shapes;
 
@@ -20,11 +23,13 @@
 @property NSPoint selectedPoint;
 
 
--(Line *) newLine;
+-(HorizontalLine *) newHorizontalLine;
+-(VerticalLine *) newVerticalLine;
 
--(id) initWithCoder:(NSCoder *)aDecoder;
 
--(void) encodeWithCoder:(NSCoder *)aCoder;
+-(Circle *) newCircle;
+
+-(Rectangle *) newRectangle;
 
 -(void) resetTrackingAreas;
 

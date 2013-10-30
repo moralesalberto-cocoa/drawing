@@ -27,10 +27,27 @@
     }
 }
 
--(Line *) newLine {
-    Line * line = [[Line alloc] init];
-    [self addShape:line];
-    return line;
+-(HorizontalLine *) newHorizontalLine {
+    HorizontalLine * horizontalLine = [[HorizontalLine alloc] init];
+    [self addShape:horizontalLine];
+    return horizontalLine;
+}
+-(VerticalLine *) newVerticalLine {
+    VerticalLine * verticalLine = [[VerticalLine alloc] init];
+    [self addShape:verticalLine];
+    return verticalLine;
+}
+
+-(Circle *) newCircle {
+    Circle * circle = [[Circle alloc] init];
+    [self addShape:circle];
+    return circle;
+}
+
+-(Rectangle *) newRectangle {
+    Rectangle * rectangle = [[Rectangle alloc] init];
+    [self addShape:rectangle];
+    return rectangle;
 }
 
 
@@ -108,17 +125,5 @@
     }
 }
 
-
-
-// Encoding and reading
--(id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
-    
-    return self;
-}
-
--(void) encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.shapes forKey:@"shapes"];
-}
 @end
 
