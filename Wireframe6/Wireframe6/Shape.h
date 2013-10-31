@@ -18,9 +18,13 @@
 
 @property CGRect trackingRect;
 
-@property BOOL selected;
+@property BOOL isSelected;
 
 @property NSMutableArray *handles;
+
+@property SelectionHandle *selectedHandle;
+
+@property BOOL isHandleSelected;
 
 
 // most shapes can use these
@@ -38,14 +42,26 @@
 -(void) resetHandles;
 
 -(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP;
+-(void) adjustStartAndEndPointWith:(CGPoint) pointOne And: (CGPoint) pointTwo;
+
+-(void) doBezierPath;
 
 -(void) resetTrackingRect;
 
--(void) handleMouseDraggedFromPoint:(CGPoint) startP ToEndPoint:(CGPoint) endP;
+-(void) handleMouseDraggedTo:(CGPoint) endP;
 
--(void) changeDimensionsDraggedFrom:(CGPoint) startP ToPoint: (CGPoint) endP InHandle:(SelectionHandle *) handle;
+-(void) changeDimensionsDraggedTo: (CGPoint) endP;
 
--(BOOL) pointInShape:(CGPoint) point;
+-(BOOL) isPointInShape:(CGPoint) point;
+
+-(void) setSelectedFromPoint:(CGPoint) point;
+
+-(void) unSetSelected;
+
+
+-(void) hover:(BOOL) doHover;
+
+
 
 
 @end

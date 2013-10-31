@@ -10,16 +10,24 @@
 
 @implementation SelectionHandle
 
--(id) initWithPoint:(CGPoint) thePoint AllowXChange:(BOOL) allowX AllowYChange: (BOOL) allowY {
-    
++(id) handleAt:(CGPoint) atPoint AllowXChange: (BOOL) allowX AllowYChange: (BOOL) allowY AffectsStartPoint:(BOOL) affectsStartP AffectsEndPoint: (BOOL) affectsEndP {
+    SelectionHandle *handle = [[SelectionHandle alloc] initWithPoint:atPoint AllowXChange:allowX AllowYChange:allowY AffectsStartP:affectsStartP AffectsEndPoint:affectsEndP];
+    return handle;
+}
+
+
+-(id) initWithPoint:(CGPoint) thePoint AllowXChange:(BOOL) allowX AllowYChange:(BOOL) allowY AffectsStartP:(BOOL) affectsStartP AffectsEndPoint: (BOOL) affectsEndP{
     self = [super init];
     self.point = thePoint;
     self.allowXChange = allowX;
     self.allowYChange = allowY;
+    self.affectsStartPoint = affectsStartP;
+    self.affectsEndPoint = affectsEndP;
     [self setupRect];
     return self;
-    
 }
+
+
 
 -(void) setupRect {
     CGFloat handleWidth = 6.0f;
@@ -48,4 +56,55 @@
     NSRectFill(self.rect);
     
 }
+
+-(CGPoint) getNewStartPointFor:(CGPoint)startPoint ShapeDraggedTo:(CGPoint) endDragPoint {
+    CGPoint newStartPoint = CGPointMake(startPoint.x, startPoint.y);
+    if (self.affectsStartPoint == YES) {
+        
+        
+        double changeInX = endDragPoint.x - self.point.x;
+        double changeInY = endDragPoint.y - self.point.y;
+        
+        double newStartPointX = startPoint.x;
+        double newStartPointY = startPoint.y;
+        
+        if (self.allowXChange == YES) {
+            newStartPointX += changeInX;
+        }
+        
+        if(self.allowYChange == YES) {
+            newStartPointY += changeInY;
+        }
+        
+        newStartPoint = CGPointMake(newStartPointX, newStartPointY);
+    }
+    return newStartPoint;
+    
+}
+
+-(CGPoint) getNewEndPointFor:(CGPoint)endPoint ShapeDraggedTo:(CGPoint) endDragPoint {
+    CGPoint newEndPoint = CGPointMake(endPoint.x, endPoint.y);
+    if (self.affectsEndPoint == YES) {
+        
+        double changeInX = endDragPoint.x - self.point.x;
+        double changeInY = endDragPoint.y - self.point.y;
+        
+        double newStartPointX = endPoint.x;
+        double newStartPointY = endPoint.y;
+        
+        if (self.allowXChange == YES) {
+            newStartPointX += changeInX;
+        }
+        
+        if(self.allowYChange == YES) {
+            newStartPointY += changeInY;
+        }
+        
+        newEndPoint = CGPointMake(newStartPointX, newStartPointY);
+    }
+    return newEndPoint;
+    
+}
+
+
 @end

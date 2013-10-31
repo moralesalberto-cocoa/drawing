@@ -23,9 +23,8 @@
 }
 
 -(void) resetHandles {
-    SelectionHandle *handle1 = [[SelectionHandle alloc] initWithPoint:self.startPoint AllowXChange:YES AllowYChange:NO];
-    SelectionHandle *handle2 = [[SelectionHandle alloc] initWithPoint:self.endPoint
-                                                         AllowXChange:YES AllowYChange:NO];
+    SelectionHandle *handle1 = [SelectionHandle handleAt:self.startPoint AllowXChange:YES AllowYChange:NO AffectsStartPoint:YES AffectsEndPoint:NO];
+    SelectionHandle *handle2 = [SelectionHandle handleAt:self.endPoint AllowXChange:YES AllowYChange:NO AffectsStartPoint:NO AffectsEndPoint:YES];
     self.handles = [NSMutableArray arrayWithObjects:handle1, handle2, nil];
 }
 

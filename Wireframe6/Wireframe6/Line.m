@@ -25,28 +25,13 @@
 }
 
 
-
-//////////
-
-
-
-
 // drawing
 -(void) draw {
     [super draw]; // some general settings like color
     [self.bezierPath stroke];
 }
 
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
-    
-    // round and add 0.5 to make thin lines
-    self.startPoint = CGPointMake(lroundf(startP.x)+0.5, lroundf(startP.y)+0.5);
-    self.endPoint = CGPointMake(lroundf(endP.x)+0.5, lroundf(endP.y)+0.5);;
-    
-    [self resetTrackingRect];
-    
-    [self resetHandles];
-    
+-(void) doBezierPath {
     // reset the bezier path
     [self.bezierPath removeAllPoints];
     [self.bezierPath moveToPoint:self.startPoint];

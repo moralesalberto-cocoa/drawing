@@ -17,6 +17,7 @@
         self.shapes = [NSMutableArray arrayWithObjects: nil];
         self.draggingSelectedShape = NO;
         self.selectedShape = nil;
+        self.hoverShape = nil;
     }
     return self;
 }
@@ -74,13 +75,26 @@
 
 
 -(void) mouseEntered:(NSEvent *)theEvent {
+    NSPoint point = [self convertPoint: [theEvent locationInWindow] fromView: nil];
+    
+    Shape *shape = [self findShapeInPoint:point];
+    if(shape!= nil) {
+        [shape hover:YES];
+        self.hoverShape = shape;
+        [self setNeedsDisplay:YES];
+    }
 }
 
 -(void) mouseMoved:(NSEvent *)theEvent {
-
+    
 }
 
 -(void) mouseExited:(NSEvent *)theEvent {
+    if(self.hoverShape != nil) {
+        [self.hoverShape hover:NO];
+        self.hoverShape = nil;
+        [self setNeedsDisplay:YES];
+    }
 }
 
 -(void) mouseDown:(NSEvent *)theEvent {
@@ -90,39 +104,49 @@
 }
 
 -(void) mouseUp:(NSEvent *)theEvent {
-
+    if(self.draggingSelectedShape == YES) {
+        self.draggingSelectedShape = NO;
+        [self resetTrackingAreas];
+        [self unsetPreviousSelectedShape];
+        [self setNeedsDisplay:YES];
+    }
 }
 
-
--(void) stopMove {
-    self.selectedShape = nil;
-    self.draggingSelectedShape = NO;
-}
 
 -(void) mouseDragged:(NSEvent *)theEvent {
     NSPoint point = [self convertPoint: [theEvent locationInWindow] fromView: nil];
     if(self.selectedShape) {
         self.draggingSelectedShape = YES;
-        [self.selectedShape handleMouseDraggedFromPoint:self.selectedPoint ToEndPoint:point];
+        [self.selectedShape handleMouseDraggedTo:point];
+        [self setNeedsDisplay:YES];
     }
 }
 
 -(void) setSelectedShapeFromPoint: (NSPoint) point {
     [self unsetPreviousSelectedShape];
+    Shape *shape = [self findShapeInPoint:point];
+    if(shape != nil) {
+        [self setSelectedShape:shape];
+        [self setSelectedPoint:point];
+        [shape setSelectedFromPoint:point];
+    }
+}
+
+-(Shape *) findShapeInPoint:(NSPoint) point {
+    Shape *found = nil;
     for (Shape *shape in self.shapes) {
-        if([shape pointInShape:point]) {
-            [self setSelectedShape:shape];
-            [self setSelectedPoint:point];
-            shape.selected = YES;
+        if([shape isPointInShape:point]) {
+            found = shape;
             break;
         }
     }
+    return found;
 }
 
 -(void) unsetPreviousSelectedShape {
     [self setSelectedShape:nil];
     for (Shape *shape in self.shapes) {
-        shape.selected = NO;
+        [shape unSetSelected];
     }
 }
 

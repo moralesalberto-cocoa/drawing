@@ -12,10 +12,6 @@
 @interface Line : Shape <NSCoding>
 
 
-
-
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP;
-
 -(void) draw;
 
 -(void) resetTrackingRect; // to be implemented by the child class and called in init method;

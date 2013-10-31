@@ -18,6 +18,4 @@
 
 -(void) draw;
 
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP;
-
 @end

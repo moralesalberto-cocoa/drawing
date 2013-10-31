@@ -15,9 +15,6 @@
 
 @property CGPoint endPoint;
 
-
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP;
-
 -(void) draw;
 
 @end

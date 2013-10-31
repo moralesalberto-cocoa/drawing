@@ -22,6 +22,8 @@
 
 @property NSPoint selectedPoint;
 
+@property Shape *hoverShape;
+
 
 -(HorizontalLine *) newHorizontalLine;
 -(VerticalLine *) newVerticalLine;

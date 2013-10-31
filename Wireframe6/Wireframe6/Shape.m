@@ -14,18 +14,46 @@
     return [NSColor redColor];
 }
 
++(NSColor *) defaultColor {
+    return [NSColor blackColor];
+}
+
 -(id) init {
     self = [super init];
-    self.selected = NO;
+    self.isSelected = NO;
+    self.isHandleSelected = NO;
+    self.selectedHandle = nil;
     self.bezierPath = [NSBezierPath bezierPath];
-    self.color = [NSColor blackColor];
+    self.color = [Shape defaultColor];
     self.handles = [[NSMutableArray alloc] init];
     return self;
 }
 
+-(void) adjustStartAndEndPointWith:(CGPoint) pointOne And: (CGPoint) pointTwo {
+    double startX = pointOne.x < pointTwo.x ? pointOne.x : pointTwo.x;
+    double startY = pointOne.y < pointTwo.y ? pointOne.y : pointTwo.y;
+    double endX = pointOne.x > pointTwo.x ? pointOne.x : pointTwo.x;
+    double endY = pointOne.y > pointTwo.y ? pointOne.y : pointTwo.y;
+    self.startPoint = CGPointMake(lroundf(startX)+0.5, lroundf(startY)+0.5);
+    self.endPoint = CGPointMake(lroundf(endX)+0.5, lroundf(endY)+0.5);
+}
+
+-(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
+    
+    [self adjustStartAndEndPointWith:startP And:endP];
+    
+    [self resetTrackingRect];
+    
+    [self resetHandles];
+    
+    // reset the bezier path to be implemented by the child class
+    [self doBezierPath];
+}
+
+
 -(void) draw {
     [self.color set];
-    if (self.selected == YES) {
+    if (self.isSelected == YES) {
         [self drawHandles];
     }
     // the rest of the method is implemented in the child class
@@ -38,35 +66,39 @@
     }
 }
 
--(void) handleMouseDraggedFromPoint:(CGPoint) startP ToEndPoint:(CGPoint) endP {
-    SelectionHandle *startedFromHandle = [self findSelectionHandleInPoint:startP];
-    if (startedFromHandle) {
-        // change dimensions
-        [self changeDimensionsDraggedFrom:startP ToPoint:endP InHandle:startedFromHandle];
+-(void) handleMouseDraggedTo:(CGPoint) endP {
+    if (self.isHandleSelected == YES) {
+        [self changeDimensionsDraggedTo:endP];
     }
     else {
         // move position
     }
 }
 
--(SelectionHandle *) findSelectionHandleInPoint:(CGPoint) point {
-    SelectionHandle *foundHandle;
-    for (SelectionHandle *handle in self.handles) {
-        if(NSPointInRect(point, handle.rect)) {
-            foundHandle = handle;
-        }
-    }
-    return foundHandle;
+-(void) changeDimensionsDraggedTo:(CGPoint) endP {
+    NSPoint newStartPoint = [self.selectedHandle getNewStartPointFor:self.startPoint ShapeDraggedTo:endP];
+    NSPoint newEndPoint = [self.selectedHandle getNewEndPointFor:self.endPoint ShapeDraggedTo:endP];
+    [self resetWithStartPoint:newStartPoint andEndPoint:newEndPoint];
 }
 
+
+
 // count the shape rect and the selectionHandle rects
--(BOOL) pointInShape:(CGPoint) point{
-    BOOL foundPoint = (NSPointInRect(point, self.trackingRect) || [self findSelectionHandleInPoint:point]);
+-(BOOL) isPointInShape:(CGPoint) point{
+    BOOL foundPoint = (NSPointInRect(point, self.trackingRect) || [self findHandleFromPoint:point]);
     return foundPoint;
 }
 
+-(void) hover:(BOOL)doHover {
+    if (doHover == YES) {
+        self.color = [Shape highlightColor];
+    }
+    if(doHover == NO) {
+        self.color = [Shape defaultColor];
+    }
+}
 
--(void) changeDimensionsDraggedFrom:(CGPoint) startP ToPoint: (CGPoint) endP InHandle:(SelectionHandle *) handle {
+-(void) doBezierPath {
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
 }
 
@@ -75,12 +107,42 @@
 }
 
 
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
+-(void) resetHandles {
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
 }
 
+-(void) setSelectedFromPoint:(CGPoint)point {
+    self.isSelected = YES;
+    [self findAndSetSelectedHandleFromPoint:point];
+}
 
-// Encoding and reading
+-(void) findAndSetSelectedHandleFromPoint:(CGPoint) point {
+    self.selectedHandle = [self findHandleFromPoint:point];
+    if(self.selectedHandle != nil) {
+        self.isHandleSelected = YES;
+    }
+}
+
+-(void) unSetSelected {
+    self.selectedHandle = nil;
+    self.isHandleSelected = NO;
+    self.isSelected = NO;
+}
+
+-(SelectionHandle *) findHandleFromPoint:(CGPoint) point {
+    SelectionHandle *foundHandle = nil;
+    for (SelectionHandle *handle in self.handles) {
+        if(NSPointInRect(point, handle.rect)) {
+            foundHandle = handle;
+            break;
+        }
+    }
+    return foundHandle;
+}
+
+
+/////
+// Encoding and reading from filesystem
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     self.bezierPath = [aDecoder decodeObjectForKey:@"bezierPath"];
@@ -92,11 +154,6 @@
     [aCoder encodeObject:self.bezierPath forKey:@"bezierPath"];
     [aCoder encodeObject:self.color forKey:@"color"];
 }
-
--(void) resetHandles {
-    NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
-}
-
 
 
 @end

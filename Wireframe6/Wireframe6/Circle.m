@@ -18,16 +18,16 @@
 
 
 -(void) resetHandles {
-    SelectionHandle *handle1 = [[SelectionHandle alloc] initWithPoint:self.startPoint AllowXChange:YES AllowYChange:YES];
-    SelectionHandle *handle8 = [[SelectionHandle alloc] initWithPoint:self.endPoint AllowXChange:YES AllowYChange:YES];
+    SelectionHandle *handle1 = [SelectionHandle handleAt:self.startPoint AllowXChange:YES AllowYChange:YES AffectsStartPoint:YES AffectsEndPoint:NO];
+    SelectionHandle *handle8 = [SelectionHandle handleAt:self.endPoint AllowXChange:YES AllowYChange:YES AffectsStartPoint:NO AffectsEndPoint:YES];
     double midX = self.startPoint.x + ((self.endPoint.x - self.startPoint.x)/2);
     double midY = self.startPoint.y + ((self.endPoint.y - self.startPoint.y)/2);
-    SelectionHandle *handle2 = [[SelectionHandle alloc] initWithPoint:CGPointMake(midX, self.startPoint.y) AllowXChange:NO AllowYChange:YES];
-    SelectionHandle *handle3 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.endPoint.x, self.startPoint.y) AllowXChange:YES AllowYChange:YES];
-    SelectionHandle *handle4 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.startPoint.x, midY) AllowXChange:YES AllowYChange:NO];
-    SelectionHandle *handle5 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.endPoint.x, midY) AllowXChange:YES AllowYChange:NO];
-    SelectionHandle *handle6 = [[SelectionHandle alloc] initWithPoint:CGPointMake(self.startPoint.x, self.endPoint.y) AllowXChange:YES AllowYChange:YES ];
-    SelectionHandle *handle7 = [[SelectionHandle alloc] initWithPoint:CGPointMake(midX, self.endPoint.y) AllowXChange:NO AllowYChange:YES];
+    SelectionHandle *handle2 = [SelectionHandle handleAt:CGPointMake(midX, self.startPoint.y) AllowXChange:NO AllowYChange:YES AffectsStartPoint:YES AffectsEndPoint:NO];
+    SelectionHandle *handle3 = [SelectionHandle handleAt:CGPointMake(self.endPoint.x, self.startPoint.y) AllowXChange:YES AllowYChange:YES AffectsStartPoint:YES AffectsEndPoint:NO];
+    SelectionHandle *handle4 = [SelectionHandle handleAt:CGPointMake(self.startPoint.x, midY) AllowXChange:YES AllowYChange:NO AffectsStartPoint:YES AffectsEndPoint:NO];
+    SelectionHandle *handle5 = [SelectionHandle handleAt:CGPointMake(self.endPoint.x, midY) AllowXChange:YES AllowYChange:NO AffectsStartPoint:NO AffectsEndPoint:YES];
+    SelectionHandle *handle6 = [SelectionHandle handleAt:CGPointMake(self.startPoint.x, self.endPoint.y) AllowXChange:YES AllowYChange:YES AffectsStartPoint:YES AffectsEndPoint:NO];
+    SelectionHandle *handle7 = [SelectionHandle handleAt:CGPointMake(midX, self.endPoint.y) AllowXChange:NO AllowYChange:YES AffectsStartPoint:NO AffectsEndPoint:YES];
     self.handles = [NSMutableArray arrayWithObjects:handle1, handle2, handle3, handle4, handle5, handle6, handle7, handle8, nil];
 }
 
@@ -37,17 +37,7 @@
     [self.bezierPath stroke];
 }
 
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
-    
-    // round and add 0.5 to make thin lines
-    self.startPoint = CGPointMake(lroundf(startP.x)+0.5, lroundf(startP.y)+0.5);
-    self.endPoint = CGPointMake(lroundf(endP.x)+0.5, lroundf(endP.y)+0.5);;
-    
-    // reset the tracking rect
-    [self resetTrackingRect];
-    
-    [self resetHandles];
-    
+-(void) doBezierPath {
     // reset the bezier path
     self.bezierPath = [NSBezierPath bezierPathWithOvalInRect:self.trackingRect];
 }
