@@ -5,43 +5,113 @@
 //  Created by Alberto Morales on 10/30/13.
 //  Copyright (c) 2013 Alberto Morales. All rights reserved.
 //
+// Location Ids:
+// 7----6----5
+// |         |
+// 8         4
+// |         |
+// 1----2----3
+//
 
 #import "SelectionHandle.h"
 
 @implementation SelectionHandle
 
-+(id) handleAt:(CGPoint) atPoint AllowXChange: (BOOL) allowX AllowYChange: (BOOL) allowY AffectsStartPoint:(BOOL) affectsStartP AffectsEndPoint: (BOOL) affectsEndP {
-    SelectionHandle *handle = [[SelectionHandle alloc] initWithPoint:atPoint AllowXChange:allowX AllowYChange:allowY AffectsStartP:affectsStartP AffectsEndPoint:affectsEndP];
+# pragma mark  *** init ***
+
++(id) handleAt:(NSPoint) atPoint LocationId: (int) theLocationId {
+    SelectionHandle *handle = [[SelectionHandle alloc] initWithPoint:atPoint LocationId:theLocationId];
     return handle;
 }
 
++ (NSRect) newBoundsFromBounds:(NSRect) old forHandle:(int) whichOne withDelta:(NSPoint) p {
+    // Taken from:
+    // http://en.wikibooks.org/wiki/Programming_Mac_OS_X_with_Cocoa_for_Beginners/Implementing_Wikidraw
+    //
+    
+    NSRect nb = old;
+    switch( whichOne )
+    {
+        case 4:
+            nb.size.width += p.x;
+            
+            NSLog(@"Width: %f", nb.size.width);
+            break;
+            
+        case 6:
+            nb.size.height += p.y;
+            break;
+            
+        case 2:
+            nb.size.height -= p.y;
+            nb.origin.y += p.y;
+            break;
+            
+        case 8:
+            nb.size.width -= p.x;
+            nb.origin.x += p.x;
+            break;
+            
+        case 1:
+            nb.size.width -= p.x;
+            nb.origin.x += p.x;
+            nb.size.height -= p.y;
+            nb.origin.y += p.y;
+            break;
+            
+        case 3:
+            nb.size.height -= p.y;
+            nb.origin.y += p.y;
+            nb.size.width += p.x;
+            break;
+            
+        case 5:
+            nb.size.width += p.x;
+            nb.size.height += p.y;
+            break;
+            
+        case 7:
+            nb.size.width -= p.x;
+            nb.origin.x += p.x;
+            nb.size.height += p.y;
+            break;
+    }
+    
+    return nb;
+}
 
--(id) initWithPoint:(CGPoint) thePoint AllowXChange:(BOOL) allowX AllowYChange:(BOOL) allowY AffectsStartP:(BOOL) affectsStartP AffectsEndPoint: (BOOL) affectsEndP{
+
+-(id) initWithPoint:(NSPoint) thePoint LocationId:(int) theLocationId {
     self = [super init];
     self.point = thePoint;
-    self.allowXChange = allowX;
-    self.allowYChange = allowY;
-    self.affectsStartPoint = affectsStartP;
-    self.affectsEndPoint = affectsEndP;
+    self.locationId = theLocationId;
     [self setupRect];
     return self;
 }
 
-
+# pragma mark *** Rect
 
 -(void) setupRect {
-    CGFloat handleWidth = 6.0f;
-    CGFloat handleHalfWidth = 6.0f / 2.0f;
+    double handleWidth = 6.0f;
+    double handleHalfWidth = 6.0f / 2.0f;
     
-    // Figure out a rectangle that's centered on the point but lined up with device pixels.
     double x = self.point.x - handleHalfWidth;
     double y = self.point.y - handleHalfWidth;
     double width = handleWidth;
     double height = handleWidth;
     
-    self.rect = CGRectMake(x, y, width, height);
+    self.rect = NSMakeRect(x, y, width, height);
     
 }
+
+# pragma *** resizing ***
+
+-(NSRect) getNewBoundsFromBounds:(NSRect) previousRect withDelta:(NSPoint) newPoint {
+    return [SelectionHandle newBoundsFromBounds:previousRect forHandle:self.locationId withDelta:newPoint];
+}
+
+
+# pragma *** draw
 
 -(void) draw {
     
@@ -57,54 +127,13 @@
     
 }
 
--(CGPoint) getNewStartPointFor:(CGPoint)startPoint ShapeDraggedTo:(CGPoint) endDragPoint {
-    CGPoint newStartPoint = CGPointMake(startPoint.x, startPoint.y);
-    if (self.affectsStartPoint == YES) {
-        
-        
-        double changeInX = endDragPoint.x - self.point.x;
-        double changeInY = endDragPoint.y - self.point.y;
-        
-        double newStartPointX = startPoint.x;
-        double newStartPointY = startPoint.y;
-        
-        if (self.allowXChange == YES) {
-            newStartPointX += changeInX;
-        }
-        
-        if(self.allowYChange == YES) {
-            newStartPointY += changeInY;
-        }
-        
-        newStartPoint = CGPointMake(newStartPointX, newStartPointY);
-    }
-    return newStartPoint;
-    
+
+# pragma *** point in selection handle
+
+-(BOOL) isPointInside:(NSPoint) point {
+    return NSPointInRect(point, self.rect);
 }
 
--(CGPoint) getNewEndPointFor:(CGPoint)endPoint ShapeDraggedTo:(CGPoint) endDragPoint {
-    CGPoint newEndPoint = CGPointMake(endPoint.x, endPoint.y);
-    if (self.affectsEndPoint == YES) {
-        
-        double changeInX = endDragPoint.x - self.point.x;
-        double changeInY = endDragPoint.y - self.point.y;
-        
-        double newStartPointX = endPoint.x;
-        double newStartPointY = endPoint.y;
-        
-        if (self.allowXChange == YES) {
-            newStartPointX += changeInX;
-        }
-        
-        if(self.allowYChange == YES) {
-            newStartPointY += changeInY;
-        }
-        
-        newEndPoint = CGPointMake(newStartPointX, newStartPointY);
-    }
-    return newEndPoint;
-    
-}
 
 
 @end

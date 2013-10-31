@@ -16,7 +16,7 @@
 
 @property NSColor *color;
 
-@property CGRect trackingRect;
+@property NSRect trackingRect;
 
 @property BOOL isSelected;
 
@@ -24,16 +24,15 @@
 
 @property SelectionHandle *selectedHandle;
 
-@property BOOL isHandleSelected;
+@property NSPoint startPoint;
 
+@property NSPoint endPoint;
 
-// most shapes can use these
-@property CGPoint startPoint;
-
-@property CGPoint endPoint;
+@property NSPoint anchorPoint; // used during dragging, resizing
 
 
 +(NSColor *) highlightColor;
++(NSColor *) defaultColor;
 
 -(void) draw;
 
@@ -41,25 +40,26 @@
 
 -(void) resetHandles;
 
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP;
--(void) adjustStartAndEndPointWith:(CGPoint) pointOne And: (CGPoint) pointTwo;
+-(void) resetWithStartPoint:(NSPoint) startP andEndPoint:(NSPoint) endP;
+
+-(void) changeDimensionsDraggedTo: (NSPoint) endP;
 
 -(void) doBezierPath;
 
 -(void) resetTrackingRect;
 
--(void) handleMouseDraggedTo:(CGPoint) endP;
+-(void) handleMouseDraggedTo:(NSPoint) endP;
 
--(void) changeDimensionsDraggedTo: (CGPoint) endP;
+-(void) hover:(BOOL) doHover;
 
--(BOOL) isPointInShape:(CGPoint) point;
+-(BOOL) isPointInShape:(NSPoint) point;
 
--(void) setSelectedFromPoint:(CGPoint) point;
+-(void) setSelectedFromPoint:(NSPoint) point;
 
 -(void) unSetSelected;
 
 
--(void) hover:(BOOL) doHover;
+
 
 
 

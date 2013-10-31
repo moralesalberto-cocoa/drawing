@@ -10,15 +10,15 @@
 
 @interface Grid : NSObject
 
-@property CGRect frame;
+@property NSRect frame;
 @property NSBezierPath * bezierPath;
 @property double increment;
-@property CGPoint startPoint;
-@property CGPoint endPoint;
+@property NSPoint startPoint;
+@property NSPoint endPoint;
 
 
 
--(id) initWithFrame:(CGRect) frame;
+-(id) initWithFrame:(NSRect) frame;
 
 -(void) drawGrid;
 

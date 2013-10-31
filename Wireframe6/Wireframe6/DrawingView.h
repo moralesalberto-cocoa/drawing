@@ -27,14 +27,11 @@
 
 -(HorizontalLine *) newHorizontalLine;
 -(VerticalLine *) newVerticalLine;
-
-
 -(Circle *) newCircle;
-
 -(Rectangle *) newRectangle;
 
 -(void) resetTrackingAreas;
 
--(void) setSelectedShapeFromPoint:(CGPoint) point;
+-(void) setSelectedShapeFromPoint:(NSPoint) point;
 
 @end

@@ -11,10 +11,8 @@
 
 @interface Rectangle : Shape <NSCoding>
 
-@property CGPoint startPoint;
+@property NSPoint startPoint;
 
-@property CGPoint endPoint;
-
--(void) draw;
+@property NSPoint endPoint;
 
 @end

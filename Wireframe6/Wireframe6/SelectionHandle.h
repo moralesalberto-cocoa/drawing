@@ -5,30 +5,35 @@
 //  Created by Alberto Morales on 10/30/13.
 //  Copyright (c) 2013 Alberto Morales. All rights reserved.
 //
+// Location Ids:
+// 7----6----5
+// |         |
+// 8         4
+// |         |
+// 1----2----3
+//
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
 @interface SelectionHandle : NSObject
 
-@property CGPoint point;
-@property CGRect rect;
-
-@property BOOL allowXChange;
-@property BOOL allowYChange;
-@property BOOL affectsStartPoint;
-@property BOOL affectsEndPoint;
-
-+(id) handleAt:(CGPoint) atPoint AllowXChange: (BOOL) allowX AllowYChange: (BOOL) allowY AffectsStartPoint:(BOOL) affectsStartP AffectsEndPoint: (BOOL) affectsEndP;
+@property NSPoint point;
+@property NSRect rect;
+@property int locationId;
 
 
--(id) initWithPoint:(CGPoint) thePoint AllowXChange:(BOOL) allowX AllowYChange:(BOOL) allowY AffectsStartP:(BOOL) affectsStartP AffectsEndPoint: (BOOL) affectsEndP;
++(id) handleAt:(NSPoint) atPoint LocationId: (int) theLocationId;
+
++ (NSRect) newBoundsFromBounds:(NSRect) old forHandle:(int) whichOne withDelta:(NSPoint) p;
+
+-(id) initWithPoint:(NSPoint) thePoint LocationId:(int) theLocationId;
 
 -(void) draw;
 
--(CGPoint) getNewStartPointFor:(CGPoint)startPoint ShapeDraggedTo:(CGPoint) endDragPoint;
+-(BOOL) isPointInside:(NSPoint) point;
 
--(CGPoint) getNewEndPointFor:(CGPoint)endPoint ShapeDraggedTo:(CGPoint) endDragPoint;
+-(NSRect) getNewBoundsFromBounds:(NSRect) previousRect withDelta:(NSPoint) newPoint;
 
 
 @end

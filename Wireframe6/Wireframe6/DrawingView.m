@@ -10,6 +10,8 @@
 
 @implementation DrawingView
 
+#pragma mark *** init ***
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -22,11 +24,17 @@
     return self;
 }
 
+
+#pragma mark *** drawRect ***
+
 - (void)drawRect:(NSRect)dirtyRect {
     for (Shape *shape in self.shapes) {
         [shape draw];
     }
 }
+
+
+#pragma mark *** New Shapes Added ***
 
 -(HorizontalLine *) newHorizontalLine {
     HorizontalLine * horizontalLine = [[HorizontalLine alloc] init];
@@ -59,6 +67,8 @@
 }
 
 
+#pragma mark *** Tracking Areas ***
+
 -(void) resetTrackingAreas {
     while (self.trackingAreas.firstObject != nil) {
         [self removeTrackingArea:self.trackingAreas.firstObject];
@@ -73,6 +83,8 @@
     [self addTrackingArea:trackingArea];
 }
 
+
+#pragma mark *** Mouse Movements ***
 
 -(void) mouseEntered:(NSEvent *)theEvent {
     NSPoint point = [self convertPoint: [theEvent locationInWindow] fromView: nil];
@@ -107,8 +119,6 @@
     if(self.draggingSelectedShape == YES) {
         self.draggingSelectedShape = NO;
         [self resetTrackingAreas];
-        [self unsetPreviousSelectedShape];
-        [self setNeedsDisplay:YES];
     }
 }
 
@@ -121,6 +131,8 @@
         [self setNeedsDisplay:YES];
     }
 }
+
+#pragma mark *** Selections ***
 
 -(void) setSelectedShapeFromPoint: (NSPoint) point {
     [self unsetPreviousSelectedShape];

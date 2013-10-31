@@ -10,6 +10,9 @@
 
 @implementation Document
 
+
+#pragma mark *** init ***
+
 - (id)init
 {
     self = [super init];
@@ -19,6 +22,9 @@
     return self;
 }
 
+
+
+#pragma mark *** Window ***
 
 - (NSString *)windowNibName
 {
@@ -37,7 +43,8 @@
 }
 
 
-//// archiving
+
+#pragma mark *** Archiving to / Read from filesystem ***
 
 + (BOOL)autosavesInPlace
 {
@@ -66,7 +73,9 @@
 }
 
 
-////// actions
+
+#pragma mark *** Actions ***
+
 - (IBAction)lineButtonPressed:(id)sender {
     [self.drawingView newHorizontalLine];
 }

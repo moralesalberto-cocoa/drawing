@@ -12,8 +12,6 @@
 @interface Line : Shape <NSCoding>
 
 
--(void) draw;
-
 -(void) resetTrackingRect; // to be implemented by the child class and called in init method;
 
 -(id) init; // to be implemented by the child class, and call resetWithStartPoint:EndPoint;

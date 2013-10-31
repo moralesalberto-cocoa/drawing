@@ -11,11 +11,9 @@
 
 @interface Circle : Shape <NSCoding>
 
-@property CGPoint startPoint;
+@property NSPoint startPoint;
 
-@property CGPoint endPoint;
+@property NSPoint endPoint;
 
-
--(void) draw;
 
 @end

@@ -44,15 +44,15 @@
 /* Begin PBXFileReference section */
 		B6468129182176A90015111B /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
 		B646812A182176A90015111B /* Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circle.m; sourceTree = "<group>"; };
-		B646812C182179870015111B /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		B646812C182179870015111B /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Rectangle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B646812D182179870015111B /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
 		B646813118217ECE0015111B /* VerticalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalLine.h; sourceTree = "<group>"; };
 		B646813218217ECE0015111B /* VerticalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalLine.m; sourceTree = "<group>"; };
 		B646813418217EDA0015111B /* HorizontalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalLine.h; sourceTree = "<group>"; };
 		B646813518217EDA0015111B /* HorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalLine.m; sourceTree = "<group>"; };
-		B66EFDA31820D2AD0066801E /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
+		B66EFDA31820D2AD0066801E /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DrawingView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B66EFDA41820D2AD0066801E /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
-		B6EC12031821A0F600B6A456 /* SelectionHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionHandle.h; sourceTree = "<group>"; };
+		B6EC12031821A0F600B6A456 /* SelectionHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SelectionHandle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B6EC12041821A0F600B6A456 /* SelectionHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionHandle.m; sourceTree = "<group>"; };
 		B6F4F3511820542F0091723E /* Wireframe6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wireframe6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F4F3541820542F0091723E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -76,12 +76,12 @@
 		B6F4F3811820542F0091723E /* Wireframe6Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wireframe6Tests.m; sourceTree = "<group>"; };
 		B6F4F38B1820556F0091723E /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
 		B6F4F38C1820556F0091723E /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
-		B6F4F38E182057F30091723E /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
-		B6F4F38F182057F30091723E /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
+		B6F4F38E182057F30091723E /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Grid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B6F4F38F182057F30091723E /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Grid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B6F4F39418205F500091723E /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
 		B6F4F39518205F500091723E /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
-		B6F4F3971820651B0091723E /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
-		B6F4F3981820651B0091723E /* Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shape.m; sourceTree = "<group>"; };
+		B6F4F3971820651B0091723E /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Shape.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B6F4F3981820651B0091723E /* Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Shape.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

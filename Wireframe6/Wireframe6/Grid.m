@@ -10,11 +10,11 @@
 
 @implementation Grid
 
--(id) initWithFrame:(CGRect)frame {
+-(id) initWithFrame:(NSRect)frame {
     self = [super init];
     self.frame = frame;
-    self.startPoint = CGPointMake(frame.origin.x, frame.origin.y+0.5);
-    self.endPoint = CGPointMake(frame.origin.x+frame.size.width, frame.origin.y+frame.size.height+0.5);
+    self.startPoint = NSMakePoint(frame.origin.x, frame.origin.y+0.5);
+    self.endPoint = NSMakePoint(frame.origin.x+frame.size.width, frame.origin.y+frame.size.height+0.5);
     self.bezierPath = [NSBezierPath bezierPath];
     self.increment = 35;
     return self;
@@ -49,8 +49,8 @@
     double from = self.startPoint.x;
     double to = self.endPoint.x;
     while (from < to) {
-        [self.bezierPath moveToPoint:CGPointMake(from, self.startPoint.y)];
-        [self.bezierPath lineToPoint:CGPointMake(from, self.endPoint.y)];
+        [self.bezierPath moveToPoint:NSMakePoint(from, self.startPoint.y)];
+        [self.bezierPath lineToPoint:NSMakePoint(from, self.endPoint.y)];
         from += self.increment;
     }
     
@@ -60,8 +60,8 @@
     double from = self.startPoint.y;
     double to = self.endPoint.y;
     while (from < to) {
-        [self.bezierPath moveToPoint:CGPointMake(self.startPoint.x, from)];
-        [self.bezierPath lineToPoint:CGPointMake(self.endPoint.x, from)];
+        [self.bezierPath moveToPoint:NSMakePoint(self.startPoint.x, from)];
+        [self.bezierPath lineToPoint:NSMakePoint(self.endPoint.x, from)];
         from += self.increment;
     }
 }

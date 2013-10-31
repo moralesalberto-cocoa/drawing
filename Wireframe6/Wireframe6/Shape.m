@@ -10,6 +10,8 @@
 
 @implementation Shape
 
+#pragma mark *** Constants ***
+
 +(NSColor *) highlightColor {
     return [NSColor redColor];
 }
@@ -18,10 +20,10 @@
     return [NSColor blackColor];
 }
 
+#pragma mark *** init ***
 -(id) init {
     self = [super init];
     self.isSelected = NO;
-    self.isHandleSelected = NO;
     self.selectedHandle = nil;
     self.bezierPath = [NSBezierPath bezierPath];
     self.color = [Shape defaultColor];
@@ -29,45 +31,33 @@
     return self;
 }
 
--(void) adjustStartAndEndPointWith:(CGPoint) pointOne And: (CGPoint) pointTwo {
-    double startX = pointOne.x < pointTwo.x ? pointOne.x : pointTwo.x;
-    double startY = pointOne.y < pointTwo.y ? pointOne.y : pointTwo.y;
-    double endX = pointOne.x > pointTwo.x ? pointOne.x : pointTwo.x;
-    double endY = pointOne.y > pointTwo.y ? pointOne.y : pointTwo.y;
-    self.startPoint = CGPointMake(lroundf(startX)+0.5, lroundf(startY)+0.5);
-    self.endPoint = CGPointMake(lroundf(endX)+0.5, lroundf(endY)+0.5);
-}
+#pragma mark *** Shape location/size ***
 
--(void) resetWithStartPoint:(CGPoint) startP andEndPoint:(CGPoint) endP {
-    
-    [self adjustStartAndEndPointWith:startP And:endP];
-    
+
+-(void) resetWithStartPoint:(NSPoint) startP andEndPoint:(NSPoint) endP {
+    self.startPoint = startP;
+    self.endPoint = endP;
     [self resetTrackingRect];
-    
     [self resetHandles];
-    
-    // reset the bezier path to be implemented by the child class
-    [self doBezierPath];
+    [self doBezierPath]; // to be implemented by the child class
 }
 
-
--(void) draw {
-    [self.color set];
-    if (self.isSelected == YES) {
-        [self drawHandles];
-    }
-    // the rest of the method is implemented in the child class
-    // make sure to call super first from the child class to draw the handles
+-(void) resetWithRect:(NSRect) rect {
+    NSPoint startP = rect.origin;
+    NSPoint endP = NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y+rect.size.height);
+    [self resetWithStartPoint:startP andEndPoint:endP];
 }
 
--(void) drawHandles {
-    for (SelectionHandle *handle in self.handles) {
-        [handle draw];
-    }
+-(void) changeDimensionsDraggedTo:(NSPoint) endP {
+    NSPoint deltaPoint = [self getDeltaPointFromNewPoint:endP];
+    NSRect newBounds = [self.selectedHandle getNewBoundsFromBounds:self.trackingRect withDelta:deltaPoint];
+    [self resetWithRect:newBounds];
 }
 
--(void) handleMouseDraggedTo:(CGPoint) endP {
-    if (self.isHandleSelected == YES) {
+#pragma mark *** Mouse Events ***
+
+-(void) handleMouseDraggedTo:(NSPoint) endP {
+    if (self.selectedHandle != nil) {
         [self changeDimensionsDraggedTo:endP];
     }
     else {
@@ -75,18 +65,12 @@
     }
 }
 
--(void) changeDimensionsDraggedTo:(CGPoint) endP {
-    NSPoint newStartPoint = [self.selectedHandle getNewStartPointFor:self.startPoint ShapeDraggedTo:endP];
-    NSPoint newEndPoint = [self.selectedHandle getNewEndPointFor:self.endPoint ShapeDraggedTo:endP];
-    [self resetWithStartPoint:newStartPoint andEndPoint:newEndPoint];
-}
-
-
-
-// count the shape rect and the selectionHandle rects
--(BOOL) isPointInShape:(CGPoint) point{
-    BOOL foundPoint = (NSPointInRect(point, self.trackingRect) || [self findHandleFromPoint:point]);
-    return foundPoint;
+-(NSPoint) getDeltaPointFromNewPoint:(NSPoint) newPoint {
+    NSPoint deltaPoint;
+    deltaPoint.x = newPoint.x - self.anchorPoint.x;
+    deltaPoint.y = newPoint.y - self.anchorPoint.y;
+    self.anchorPoint = newPoint;
+    return deltaPoint;
 }
 
 -(void) hover:(BOOL)doHover {
@@ -98,9 +82,28 @@
     }
 }
 
+#pragma mark *** Drawing ***
+-(void) draw {
+    
+    [self.color set];
+    if (self.isSelected == YES) {
+        [self drawHandles];
+    }
+    [self.bezierPath stroke];
+}
+
+-(void) drawHandles {
+    for (SelectionHandle *handle in self.handles) {
+        [handle draw];
+    }
+}
+
 -(void) doBezierPath {
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
 }
+
+
+#pragma mark *** Resets ***
 
 -(void) resetTrackingRect {
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
@@ -111,28 +114,33 @@
     NSLog(@"TO BE IMPLEMENTED BY CHILD CLASS");
 }
 
--(void) setSelectedFromPoint:(CGPoint)point {
+
+#pragma mark *** Shape selection ***
+
+-(BOOL) isPointInShape:(NSPoint) point{
+    BOOL foundPoint = (NSPointInRect(point, self.trackingRect) || [self findHandleFromPoint:point]);
+    return foundPoint;
+}
+
+-(void) setSelectedFromPoint:(NSPoint)point {
     self.isSelected = YES;
+    self.anchorPoint = point;
     [self findAndSetSelectedHandleFromPoint:point];
 }
 
--(void) findAndSetSelectedHandleFromPoint:(CGPoint) point {
+-(void) findAndSetSelectedHandleFromPoint:(NSPoint) point {
     self.selectedHandle = [self findHandleFromPoint:point];
-    if(self.selectedHandle != nil) {
-        self.isHandleSelected = YES;
-    }
 }
 
 -(void) unSetSelected {
     self.selectedHandle = nil;
-    self.isHandleSelected = NO;
     self.isSelected = NO;
 }
 
--(SelectionHandle *) findHandleFromPoint:(CGPoint) point {
+-(SelectionHandle *) findHandleFromPoint:(NSPoint) point {
     SelectionHandle *foundHandle = nil;
     for (SelectionHandle *handle in self.handles) {
-        if(NSPointInRect(point, handle.rect)) {
+        if([handle isPointInside:point]) {
             foundHandle = handle;
             break;
         }
@@ -141,18 +149,28 @@
 }
 
 
-/////
-// Encoding and reading from filesystem
+#pragma mark *** Encoding/Decoding from filesystem ***
+
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     self.bezierPath = [aDecoder decodeObjectForKey:@"bezierPath"];
     self.color = [aDecoder decodeObjectForKey:@"color"];
+    NSPoint startP = [aDecoder decodePointForKey:@"startPoint"];
+    NSPoint endP = [aDecoder decodePointForKey:@"endPoint"];
+    [self resetWithStartPoint:startP andEndPoint:endP];
     return self;
 }
 
 -(void) encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.bezierPath forKey:@"bezierPath"];
     [aCoder encodeObject:self.color forKey:@"color"];
+    [aCoder encodePoint:self.startPoint forKey:@"startPoint"];
+    [aCoder encodePoint:self.endPoint forKey:@"endPoint"];
+}
+
+#pragma mark *** Debugging ***
+-(NSString *) description {
+    return [NSString stringWithFormat:@"Shape located at x1: %f, y1: %f, x2:%f, y2:%f", self.startPoint.x, self.startPoint.y, self.endPoint.x, self.endPoint.y];
 }
 
 
