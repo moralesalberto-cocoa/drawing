@@ -28,7 +28,16 @@
     [self.bezierPath lineToPoint:self.endPoint];
 }
 
-
+- (void) offsetLocationByX:(float) x byY:(float) y {
+    
+    double startX = self.startPoint.x + x;
+    double startY = self.startPoint.y + y;
+    double endX = self.endPoint.x + x;
+    double endY = self.endPoint.y + y;
+    
+    [self resetWithStartPoint:NSMakePoint(startX, startY) andEndPoint:NSMakePoint(endX, endY)];
+    
+}
 
 
 

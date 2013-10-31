@@ -13,12 +13,13 @@
 
 -(id) init {
     self = [super init];
+    self.trackingThickness = 10.0;
     [self resetWithStartPoint:NSMakePoint(20.0, 50) andEndPoint:NSMakePoint(100.0, 50)];
     return self;
 }
 
 -(void) resetTrackingRect {
-    float thickness = 10.0;
+    float thickness = self.trackingThickness;
     self.trackingRect = NSMakeRect(self.startPoint.x, self.startPoint.y-(thickness/2.0), self.endPoint.x-self.startPoint.x, thickness);
 }
 
@@ -34,5 +35,8 @@
     NSPoint endP = NSMakePoint(rect.origin.x + rect.size.width, self.startPoint.y);
     [self resetWithStartPoint:startP andEndPoint:endP];
 }
+
+
+
 
 @end

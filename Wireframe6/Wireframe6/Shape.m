@@ -43,25 +43,35 @@
 }
 
 -(void) resetWithRect:(NSRect) rect {
+    // for lines we need override
     NSPoint startP = rect.origin;
     NSPoint endP = NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y+rect.size.height);
     [self resetWithStartPoint:startP andEndPoint:endP];
 }
 
--(void) changeDimensionsDraggedTo:(NSPoint) endP {
-    NSPoint deltaPoint = [self getDeltaPointFromNewPoint:endP];
+-(void) changeDimensionsDraggedTo:(NSPoint) deltaPoint {
     NSRect newBounds = [self.selectedHandle getNewBoundsFromBounds:self.trackingRect withDelta:deltaPoint];
     [self resetWithRect:newBounds];
+}
+
+- (void) offsetLocationByX:(float) x byY:(float) y {
+    // need to override for lines
+    NSRect bounds = self.trackingRect;
+    bounds.origin.x += x;
+    bounds.origin.y += y;
+    [self resetWithRect:bounds];
 }
 
 #pragma mark *** Mouse Events ***
 
 -(void) handleMouseDraggedTo:(NSPoint) endP {
+    NSPoint deltaPoint = [self getDeltaPointFromNewPoint:endP];
     if (self.selectedHandle != nil) {
-        [self changeDimensionsDraggedTo:endP];
+        [self changeDimensionsDraggedTo:deltaPoint];
     }
     else {
         // move position
+        [self offsetLocationByX:deltaPoint.x byY:deltaPoint.y];
     }
 }
 

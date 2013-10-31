@@ -11,5 +11,6 @@
 
 @interface HorizontalLine : Line <NSCoding>
 
+@property double trackingThickness;
 
 @end

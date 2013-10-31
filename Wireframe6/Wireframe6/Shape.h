@@ -42,7 +42,7 @@
 
 -(void) resetWithStartPoint:(NSPoint) startP andEndPoint:(NSPoint) endP;
 
--(void) changeDimensionsDraggedTo: (NSPoint) endP;
+-(void) changeDimensionsDraggedTo: (NSPoint) deltaPoint;
 
 -(void) doBezierPath;
 
