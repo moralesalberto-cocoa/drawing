@@ -1,0 +1,42 @@
+//
+//  FreeHandHorizontal.m
+//  Wireframe6
+//
+//  Created by Alberto Morales on 11/6/13.
+//  Copyright (c) 2013 Alberto Morales. All rights reserved.
+//
+
+#import "FreeHandHorizontal.h"
+
+@implementation FreeHandHorizontal
+
++(void) setPathFor: (NSBezierPath *) thePath Between:(NSPoint) startPoint And: (NSPoint) endPoint {
+    [[[FreeHandHorizontal alloc] initWithPath:thePath Between:startPoint And:endPoint] setPath];
+}
+
+- (void) setPath {
+    [_bezierPath moveToPoint:_startPoint];
+    [_bezierPath curveToPoint:_endPoint controlPoint1:[self controlPoint1] controlPoint2:[self controlPoint2]];
+}
+
+- (NSPoint)controlPoint1 {
+    double x = _startPoint.x+[self offsetX];
+    double y = _startPoint.y - [self offsetY];
+    return NSMakePoint(x, y);
+}
+
+-(NSPoint)controlPoint2 {
+    double x = _endPoint.x-[self offsetX];
+    double y = _endPoint.y + [self offsetY];
+    return NSMakePoint(x, y);
+}
+
+-(double) offsetX {
+    return ((_endPoint.x-_startPoint.x)/BEZIER_LENGTH_PARTS);
+}
+
+-(double) offsetY {
+    return ((_endPoint.x-_startPoint.x)/BEZIER_PATH_OFFSET);
+}
+
+@end

@@ -39,10 +39,12 @@
 }
 
 -(void) setLineColor {
-    double rFloat = 135/255.0f;
-    double gFloat = 206/255.0f;
-    double bFloat = 250/255.0f;
-    [[NSColor colorWithCalibratedRed:rFloat green:gFloat blue:bFloat alpha:1.0] set];
+// #B5D8EB (181,216,235)
+    double rFloat = 181/255.0f;
+    double gFloat = 216/255.0f;
+    double bFloat = 235/255.0f;
+    
+    [[NSColor colorWithRed:rFloat green:gFloat blue:bFloat alpha:1.0]set];
 }
 
 -(void) drawVerticalLines {

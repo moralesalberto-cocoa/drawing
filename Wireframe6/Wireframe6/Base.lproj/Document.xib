@@ -35,7 +35,7 @@
                         <rect key="frame" x="5" y="628" width="42" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="eiG-xg-ett"/>
+                            <constraint firstAttribute="width" constant="30" id="eCx-xn-NHc"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6YM-gl-B50">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -45,7 +45,7 @@
                             <action selector="lineButtonPressed:" target="-2" id="CkC-6C-12u"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04h-Ek-rKr">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="04h-Ek-rKr">
                         <rect key="frame" x="5" y="567" width="42" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="o" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IXW-2Y-jLr">
@@ -56,7 +56,7 @@
                             <action selector="circleButtonPressed:" target="-2" id="oJ5-ma-4Nc"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="51m-1e-Emb">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="51m-1e-Emb">
                         <rect key="frame" x="5" y="535" width="42" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Rect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4go-Fr-tF6">
@@ -67,7 +67,7 @@
                             <action selector="rectButtonPressed:" target="-2" id="Kk1-OI-3eH"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJD-8j-6aa">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SJD-8j-6aa">
                         <rect key="frame" x="5" y="598" width="42" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="|" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lSj-15-dpN">
@@ -80,16 +80,25 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ghM-Zd-cbh" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="11" id="1lG-rm-j8u"/>
-                    <constraint firstItem="m0k-zA-tUP" firstAttribute="top" secondItem="D1S-tQ-W2v" secondAttribute="top" id="8Rb-d3-Btm"/>
-                    <constraint firstItem="D1S-tQ-W2v" firstAttribute="leading" secondItem="ghM-Zd-cbh" secondAttribute="trailing" constant="8" symbolic="YES" id="EPb-5B-XsW"/>
-                    <constraint firstItem="m0k-zA-tUP" firstAttribute="top" secondItem="6" secondAttribute="top" id="HHu-5a-1XO"/>
-                    <constraint firstItem="m0k-zA-tUP" firstAttribute="bottom" secondItem="D1S-tQ-W2v" secondAttribute="bottom" id="Jz0-Qk-5Nv"/>
-                    <constraint firstItem="m0k-zA-tUP" firstAttribute="leading" secondItem="ghM-Zd-cbh" secondAttribute="trailing" constant="8" symbolic="YES" id="Yq6-Jf-2Gm"/>
-                    <constraint firstAttribute="trailing" secondItem="D1S-tQ-W2v" secondAttribute="trailing" constant="-5" id="ZZA-FB-79s"/>
-                    <constraint firstAttribute="trailing" secondItem="m0k-zA-tUP" secondAttribute="trailing" id="fsu-y8-Z1h"/>
-                    <constraint firstItem="ghM-Zd-cbh" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="myE-Ji-6VU"/>
-                    <constraint firstAttribute="bottom" secondItem="m0k-zA-tUP" secondAttribute="bottom" id="wrU-8y-PM9"/>
+                    <constraint firstAttribute="trailing" secondItem="m0k-zA-tUP" secondAttribute="trailing" id="2ym-6w-gLn"/>
+                    <constraint firstItem="D1S-tQ-W2v" firstAttribute="leading" secondItem="51m-1e-Emb" secondAttribute="trailing" constant="8" symbolic="YES" id="4aa-ku-Z9h"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="top" secondItem="D1S-tQ-W2v" secondAttribute="top" id="CF4-tM-6z8"/>
+                    <constraint firstItem="51m-1e-Emb" firstAttribute="top" secondItem="04h-Ek-rKr" secondAttribute="bottom" constant="11" id="EFb-BW-NdW"/>
+                    <constraint firstItem="SJD-8j-6aa" firstAttribute="top" secondItem="ghM-Zd-cbh" secondAttribute="bottom" constant="9" id="HrT-5O-NNA"/>
+                    <constraint firstAttribute="bottom" secondItem="m0k-zA-tUP" secondAttribute="bottom" id="LCB-RP-QUw"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="leading" secondItem="SJD-8j-6aa" secondAttribute="trailing" constant="8" symbolic="YES" id="RY4-pL-8Ds"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="top" secondItem="6" secondAttribute="top" id="SuO-Tr-5YY"/>
+                    <constraint firstItem="D1S-tQ-W2v" firstAttribute="leading" secondItem="ghM-Zd-cbh" secondAttribute="trailing" constant="8" symbolic="YES" id="WMM-LM-a2G"/>
+                    <constraint firstItem="04h-Ek-rKr" firstAttribute="leading" secondItem="51m-1e-Emb" secondAttribute="leading" id="Wav-MQ-q3a"/>
+                    <constraint firstAttribute="trailing" secondItem="D1S-tQ-W2v" secondAttribute="trailing" constant="-5" id="b5y-VM-woi"/>
+                    <constraint firstItem="ghM-Zd-cbh" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="11" id="c6m-p3-9wt"/>
+                    <constraint firstItem="04h-Ek-rKr" firstAttribute="top" secondItem="SJD-8j-6aa" secondAttribute="bottom" constant="10" id="fd7-cM-y6i"/>
+                    <constraint firstItem="04h-Ek-rKr" firstAttribute="leading" secondItem="SJD-8j-6aa" secondAttribute="leading" id="hXH-Z9-WKi"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="leading" secondItem="ghM-Zd-cbh" secondAttribute="trailing" constant="8" symbolic="YES" id="hsx-Gn-Zb7"/>
+                    <constraint firstItem="SJD-8j-6aa" firstAttribute="leading" secondItem="ghM-Zd-cbh" secondAttribute="leading" id="kFC-xK-Fix"/>
+                    <constraint firstItem="ghM-Zd-cbh" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="rJh-hv-duP"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="bottom" secondItem="D1S-tQ-W2v" secondAttribute="bottom" id="vEg-cv-nsi"/>
+                    <constraint firstItem="m0k-zA-tUP" firstAttribute="leading" secondItem="04h-Ek-rKr" secondAttribute="trailing" constant="8" symbolic="YES" id="zB0-Np-sQl"/>
                 </constraints>
             </view>
             <connections>
@@ -97,5 +106,15 @@
             </connections>
         </window>
         <customObject id="-3" userLabel="Application"/>
+        <collectionViewItem id="T1A-yV-J1j">
+            <connections>
+                <outlet property="view" destination="1Dt-yE-vsS" id="efl-VZ-a8M"/>
+            </connections>
+        </collectionViewItem>
+        <view id="1Dt-yE-vsS">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+        </view>
+        <collectionViewItem id="vqF-1E-GGP"/>
     </objects>
 </document>

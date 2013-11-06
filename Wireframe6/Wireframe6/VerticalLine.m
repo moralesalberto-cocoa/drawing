@@ -22,6 +22,11 @@
     self.trackingRect = NSMakeRect(self.startPoint.x-(width/2.0), self.startPoint.y, width, self.endPoint.y-self.startPoint.y);
 }
 
+-(void) doBezierPath {
+    // reset the bezier path
+    [self.bezierPath removeAllPoints];
+    [FreeHandVertical setPathFor:self.bezierPath Between:self.startPoint And:self.endPoint];
+}
 
 -(void) resetHandles {
     SelectionHandle *handle1 = [SelectionHandle handleAt:self.startPoint LocationId:2];

@@ -12,6 +12,9 @@
 		B646813318217ECE0015111B /* VerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813218217ECE0015111B /* VerticalLine.m */; };
 		B646813618217EDA0015111B /* HorizontalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813518217EDA0015111B /* HorizontalLine.m */; };
 		B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66EFDA41820D2AD0066801E /* DrawingView.m */; };
+		B6AA3AEC182ABC020048AC92 /* FreeHand.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AA3AEB182ABC020048AC92 /* FreeHand.m */; };
+		B6AA3AEF182AC3160048AC92 /* FreeHandHorizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AA3AEE182AC3160048AC92 /* FreeHandHorizontal.m */; };
+		B6AA3AF2182AC3210048AC92 /* FreeHandVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AA3AF1182AC3210048AC92 /* FreeHandVertical.m */; };
 		B6EC12051821A0F600B6A456 /* SelectionHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EC12041821A0F600B6A456 /* SelectionHandle.m */; };
 		B6F4F3551820542F0091723E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F4F3541820542F0091723E /* Cocoa.framework */; };
 		B6F4F35F1820542F0091723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6F4F35D1820542F0091723E /* InfoPlist.strings */; };
@@ -52,6 +55,12 @@
 		B646813518217EDA0015111B /* HorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalLine.m; sourceTree = "<group>"; };
 		B66EFDA31820D2AD0066801E /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DrawingView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B66EFDA41820D2AD0066801E /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
+		B6AA3AEA182ABC020048AC92 /* FreeHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeHand.h; sourceTree = "<group>"; };
+		B6AA3AEB182ABC020048AC92 /* FreeHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeHand.m; sourceTree = "<group>"; };
+		B6AA3AED182AC3160048AC92 /* FreeHandHorizontal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeHandHorizontal.h; sourceTree = "<group>"; };
+		B6AA3AEE182AC3160048AC92 /* FreeHandHorizontal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeHandHorizontal.m; sourceTree = "<group>"; };
+		B6AA3AF0182AC3210048AC92 /* FreeHandVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeHandVertical.h; sourceTree = "<group>"; };
+		B6AA3AF1182AC3210048AC92 /* FreeHandVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeHandVertical.m; sourceTree = "<group>"; };
 		B6EC12031821A0F600B6A456 /* SelectionHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SelectionHandle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B6EC12041821A0F600B6A456 /* SelectionHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionHandle.m; sourceTree = "<group>"; };
 		B6F4F3511820542F0091723E /* Wireframe6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wireframe6.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +127,12 @@
 				B646813218217ECE0015111B /* VerticalLine.m */,
 				B646813418217EDA0015111B /* HorizontalLine.h */,
 				B646813518217EDA0015111B /* HorizontalLine.m */,
+				B6AA3AEA182ABC020048AC92 /* FreeHand.h */,
+				B6AA3AEB182ABC020048AC92 /* FreeHand.m */,
+				B6AA3AED182AC3160048AC92 /* FreeHandHorizontal.h */,
+				B6AA3AEE182AC3160048AC92 /* FreeHandHorizontal.m */,
+				B6AA3AF0182AC3210048AC92 /* FreeHandVertical.h */,
+				B6AA3AF1182AC3210048AC92 /* FreeHandVertical.m */,
 				B6468129182176A90015111B /* Circle.h */,
 				B646812A182176A90015111B /* Circle.m */,
 				B646812C182179870015111B /* Rectangle.h */,
@@ -324,11 +339,14 @@
 			files = (
 				B6F4F3681820542F0091723E /* Document.m in Sources */,
 				B6F4F39618205F500091723E /* Line.m in Sources */,
+				B6AA3AF2182AC3210048AC92 /* FreeHandVertical.m in Sources */,
+				B6AA3AEF182AC3160048AC92 /* FreeHandHorizontal.m in Sources */,
 				B646812E182179870015111B /* Rectangle.m in Sources */,
 				B646813618217EDA0015111B /* HorizontalLine.m in Sources */,
 				B6F4F38D1820556F0091723E /* GridView.m in Sources */,
 				B6F4F3611820542F0091723E /* main.m in Sources */,
 				B6F4F390182057F30091723E /* Grid.m in Sources */,
+				B6AA3AEC182ABC020048AC92 /* FreeHand.m in Sources */,
 				B646812B182176A90015111B /* Circle.m in Sources */,
 				B6EC12051821A0F600B6A456 /* SelectionHandle.m in Sources */,
 				B6F4F3991820651B0091723E /* Shape.m in Sources */,

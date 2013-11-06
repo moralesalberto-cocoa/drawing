@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "SelectionHandle.h"
+#import "FreeHandVertical.h"
+#import "FreeHandHorizontal.h"
+
 
 @interface Shape : NSObject <NSCoding>
 
@@ -42,9 +45,11 @@
 
 -(void) resetWithStartPoint:(NSPoint) startP andEndPoint:(NSPoint) endP;
 
+-(void) resetWithRect:(NSRect) rect;
+
 -(void) changeDimensionsDraggedTo: (NSPoint) deltaPoint;
 
--(void) doBezierPath;
+-(void) doBezierPath; // implemented by the child classes
 
 -(void) resetTrackingRect;
 
