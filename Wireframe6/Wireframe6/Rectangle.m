@@ -18,6 +18,7 @@
 -(void) doBezierPath {
     // reset the bezier path
     self.bezierPath = [NSBezierPath bezierPathWithRect:self.trackingRect];
+    
 }
 
 

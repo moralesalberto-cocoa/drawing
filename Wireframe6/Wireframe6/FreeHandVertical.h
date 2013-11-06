@@ -11,6 +11,8 @@
 
 @interface FreeHandVertical : FreeHand
 
+
+
 +(void) setPathFor: (NSBezierPath *) thePath Between:(NSPoint) startPoint And: (NSPoint) endPoint;
 
 @end
