@@ -23,5 +23,6 @@
 - (IBAction)circleButtonPressed:(id)sender;
 - (IBAction)rectButtonPressed:(id)sender;
 - (IBAction)verticalLineButtonPressed:(id)sender;
+- (IBAction)browserButtonPressed:(id)sender;
 
 @end

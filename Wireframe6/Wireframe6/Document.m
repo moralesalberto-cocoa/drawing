@@ -93,4 +93,8 @@
     [self.drawingView newVerticalLine];
     
 }
+
+- (IBAction)browserButtonPressed:(id)sender {
+    [self.drawingView newBrowserShape];
+}
 @end

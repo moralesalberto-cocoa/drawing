@@ -11,6 +11,7 @@
 #import "VerticalLine.h"
 #import "Circle.h"
 #import "Rectangle.h"
+#import "BrowserShape.h"
 
 @interface DrawingView : NSView
 
@@ -29,6 +30,7 @@
 -(VerticalLine *) newVerticalLine;
 -(Circle *) newCircle;
 -(Rectangle *) newRectangle;
+-(BrowserShape *) newBrowserShape;
 
 -(void) resetTrackingAreas;
 

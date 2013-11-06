@@ -59,6 +59,12 @@
     return rectangle;
 }
 
+-(BrowserShape *) newBrowserShape {
+    BrowserShape *browser = [[BrowserShape alloc] init];
+    [self addShape:browser];
+    return browser;
+}
+
 
 -(void) addShape:(Shape *) shape {
     [self.shapes addObject:shape];

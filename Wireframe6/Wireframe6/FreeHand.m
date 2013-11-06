@@ -10,7 +10,7 @@
 
 @implementation FreeHand
 
-double const BEZIER_PATH_OFFSET = 200.0;
+double const BEZIER_PATH_OFFSET = 100.0;
 double const BEZIER_LENGTH_PARTS = 3.0;
 
 -(id) initWithPath:(NSBezierPath *) thePath Between:(NSPoint) startPoint And: (NSPoint) endPoint {

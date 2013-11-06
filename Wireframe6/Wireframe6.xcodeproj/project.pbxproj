@@ -12,6 +12,7 @@
 		B646813318217ECE0015111B /* VerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813218217ECE0015111B /* VerticalLine.m */; };
 		B646813618217EDA0015111B /* HorizontalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B646813518217EDA0015111B /* HorizontalLine.m */; };
 		B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66EFDA41820D2AD0066801E /* DrawingView.m */; };
+		B68CF619182AECEB000E8F2B /* BrowserShape.m in Sources */ = {isa = PBXBuildFile; fileRef = B68CF618182AECEB000E8F2B /* BrowserShape.m */; };
 		B6AA3AEC182ABC020048AC92 /* FreeHand.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AA3AEB182ABC020048AC92 /* FreeHand.m */; };
 		B6AA3AEF182AC3160048AC92 /* FreeHandHorizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AA3AEE182AC3160048AC92 /* FreeHandHorizontal.m */; };
 		B6AA3AF2182AC3210048AC92 /* FreeHandVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AA3AF1182AC3210048AC92 /* FreeHandVertical.m */; };
@@ -55,6 +56,8 @@
 		B646813518217EDA0015111B /* HorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalLine.m; sourceTree = "<group>"; };
 		B66EFDA31820D2AD0066801E /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DrawingView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B66EFDA41820D2AD0066801E /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
+		B68CF617182AECEB000E8F2B /* BrowserShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserShape.h; sourceTree = "<group>"; };
+		B68CF618182AECEB000E8F2B /* BrowserShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserShape.m; sourceTree = "<group>"; };
 		B6AA3AEA182ABC020048AC92 /* FreeHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeHand.h; sourceTree = "<group>"; };
 		B6AA3AEB182ABC020048AC92 /* FreeHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeHand.m; sourceTree = "<group>"; };
 		B6AA3AED182AC3160048AC92 /* FreeHandHorizontal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeHandHorizontal.h; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 			children = (
 				B6F4F3971820651B0091723E /* Shape.h */,
 				B6F4F3981820651B0091723E /* Shape.m */,
+				B68CF617182AECEB000E8F2B /* BrowserShape.h */,
+				B68CF618182AECEB000E8F2B /* BrowserShape.m */,
 				B6EC12031821A0F600B6A456 /* SelectionHandle.h */,
 				B6EC12041821A0F600B6A456 /* SelectionHandle.m */,
 				B6F4F39418205F500091723E /* Line.h */,
@@ -351,6 +356,7 @@
 				B6EC12051821A0F600B6A456 /* SelectionHandle.m in Sources */,
 				B6F4F3991820651B0091723E /* Shape.m in Sources */,
 				B66EFDA51820D2AD0066801E /* DrawingView.m in Sources */,
+				B68CF619182AECEB000E8F2B /* BrowserShape.m in Sources */,
 				B646813318217ECE0015111B /* VerticalLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

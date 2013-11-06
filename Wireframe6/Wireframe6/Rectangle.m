@@ -17,7 +17,16 @@
 
 -(void) doBezierPath {
     // reset the bezier path
-    self.bezierPath = [NSBezierPath bezierPathWithRect:self.trackingRect];
+    //self.bezierPath = [NSBezierPath bezierPathWithRect:self.trackingRect];
+    
+    [self.bezierPath removeAllPoints];
+    [FreeHandHorizontal setPathFor:self.bezierPath Between:self.startPoint And:NSMakePoint(self.trackingRect.origin.x+self.trackingRect.size.width, self.trackingRect.origin.y)];
+    
+    [FreeHandHorizontal setPathFor:self.bezierPath Between:NSMakePoint(self.trackingRect.origin.x, self.trackingRect.origin.y+self.trackingRect.size.height) And:NSMakePoint(self.trackingRect.origin.x, self.trackingRect.origin.y)];
+    
+    [FreeHandHorizontal setPathFor:self.bezierPath Between:NSMakePoint(self.trackingRect.origin.x+self.trackingRect.size.width, self.trackingRect.origin.y) And:NSMakePoint(self.trackingRect.origin.x+self.trackingRect.size.width, self.trackingRect.origin.y+self.trackingRect.size.height)];
+    
+    [FreeHandHorizontal setPathFor:self.bezierPath Between:NSMakePoint(self.trackingRect.origin.x, self.trackingRect.origin.y+self.trackingRect.size.height) And:NSMakePoint(self.trackingRect.origin.x+self.trackingRect.size.width, self.trackingRect.origin.y+self.trackingRect.size.height)];
     
 }
 
